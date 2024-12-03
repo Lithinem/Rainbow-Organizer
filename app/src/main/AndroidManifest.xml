@@ -6,9 +6,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/temp_ic_launcher_cloud"
+        android:icon="@mipmap/ic_launcher_cloud"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/temp_ic_launcher_cloud_round"
+        android:roundIcon="@mipmap/ic_launcher_cloud_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RainbowOrganizor"
         tools:targetApi="31">
