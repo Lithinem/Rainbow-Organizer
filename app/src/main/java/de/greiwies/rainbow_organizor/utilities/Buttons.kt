@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun VariableOvalButton(
+fun VariableFunctionOvalButton(
     buttonText: String,
     buttonCalculationInteger: Int,
     onClickAction: (test: Int) -> Unit
@@ -29,7 +29,7 @@ fun VariableOvalButton(
     }
 }
 @Composable
-fun VariableOvalButton(
+fun VariableFunctionOvalButton(
     buttonText: String,
     onClickAction: () -> Unit
 ) {
@@ -51,7 +51,7 @@ fun VariableOvalButton(
 @Composable
 fun VariableRoundButtonPreview() {
     MaterialTheme {
-        VariableOvalButton(
+        VariableFunctionOvalButton(
             buttonText = "Preview Button",
             42,
             onClickAction = { println("Preview Button Clicked!") } //Wird nicht ausgeführt, da preview

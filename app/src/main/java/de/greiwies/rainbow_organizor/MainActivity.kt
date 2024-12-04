@@ -13,7 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import de.greiwies.rainbow_organizor.demos.DemoVariableOvalButton
+import de.greiwies.rainbow_organizor.demos.DemoVariableFunctionOvalButton
 import de.greiwies.rainbow_organizor.ui.theme.RainbowOrganizorTheme
 
 class MainActivity : ComponentActivity() {
@@ -41,7 +41,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             text = "Hello $name!",
             modifier = modifier
         )
-        DemoVariableOvalButton()
+        DemoVariableFunctionOvalButton()
     }
 }
 
