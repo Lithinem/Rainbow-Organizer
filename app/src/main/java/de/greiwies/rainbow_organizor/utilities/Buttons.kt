@@ -22,10 +22,7 @@ fun VariableFunctionOvalButton(
         shape = RoundedCornerShape(50.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
-        Text(
-            text = buttonText,
-            textAlign = TextAlign.Center
-        )
+        TextInButton(buttonText)
     }
 }
 @Composable
@@ -38,13 +35,18 @@ fun VariableFunctionOvalButton(
         shape = RoundedCornerShape(50.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
-        Text(
-            text = buttonText,
-            textAlign = TextAlign.Center
-        )
+        TextInButton(buttonText)
     }
 }
 
+
+@Composable
+private fun TextInButton(buttonText: String){
+    Text(
+        text = buttonText,
+        textAlign = TextAlign.Center
+    )
+}
 
 
 @Preview(showBackground = true)
