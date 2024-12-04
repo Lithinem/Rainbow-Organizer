@@ -1,20 +1,18 @@
 package de.greiwies.rainbow_organizor.demos
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import de.greiwies.rainbow_organizor.utilities.VariableRoundButton
+import de.greiwies.rainbow_organizor.utilities.VariableOvalButton
 
 // -----  DEMO Composables ---------
 
 @Composable
-fun DemoVariableRoundButton() {
+fun DemoVariableOvalButton() {
     val counter = remember { mutableStateOf(1) }
     Column {
-        VariableRoundButton(
+        VariableOvalButton(
             buttonText = "Preview Button",
             buttonCalculationInteger = counter.value,
             onClickAction = { number ->

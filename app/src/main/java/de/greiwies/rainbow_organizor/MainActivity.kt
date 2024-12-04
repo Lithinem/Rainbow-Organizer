@@ -10,14 +10,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import de.greiwies.rainbow_organizor.demos.DemoVariableRoundButton
+import de.greiwies.rainbow_organizor.demos.DemoVariableOvalButton
 import de.greiwies.rainbow_organizor.ui.theme.RainbowOrganizorTheme
-import de.greiwies.rainbow_organizor.utilities.VariableRoundButton
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +41,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             text = "Hello $name!",
             modifier = modifier
         )
-        DemoVariableRoundButton()
+        DemoVariableOvalButton()
     }
 }
 

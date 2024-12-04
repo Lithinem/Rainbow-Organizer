@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun VariableRoundButton(
+fun VariableOvalButton(
     buttonText: String,
     buttonCalculationInteger: Int,
     onClickAction: (test: Int) -> Unit
@@ -28,12 +28,30 @@ fun VariableRoundButton(
         )
     }
 }
+@Composable
+fun VariableOvalButton(
+    buttonText: String,
+    onClickAction: () -> Unit
+) {
+    Button(
+        onClick = { onClickAction() },
+        shape = RoundedCornerShape(50.dp),
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Text(
+            text = buttonText,
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
+
 
 @Preview(showBackground = true)
 @Composable
 fun VariableRoundButtonPreview() {
     MaterialTheme {
-        VariableRoundButton(
+        VariableOvalButton(
             buttonText = "Preview Button",
             42,
             onClickAction = { println("Preview Button Clicked!") } //Wird nicht ausgeführt, da preview
