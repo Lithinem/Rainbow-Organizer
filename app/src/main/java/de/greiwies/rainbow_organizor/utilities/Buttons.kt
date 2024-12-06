@@ -81,7 +81,7 @@ private fun TextInButton(buttonText: String){
 fun ExpandableFab(expandFab : MutableState<Boolean>) {
     val animatedSize by animateDpAsState(
         targetValue = if (expandFab.value) integerResource(R.integer.Fab_FullExpandedSize).dp else integerResource(R.integer.Fab_FullInflatedSize).dp,
-        animationSpec = tween(durationMillis = 500) //TODO: Outsourcing this value into integer file breaks animation. WHY?
+        animationSpec = tween(durationMillis = integerResource(id = R.integer.DefaultAnimationDurationMilliseconds))
     )
     val currentSize: Dp = animatedSize
 

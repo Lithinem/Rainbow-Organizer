@@ -14,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.integerResource
 import androidx.compose.ui.zIndex
 import de.greiwies.rainbow_organizor.R
 import de.greiwies.rainbow_organizor.ui.theme.GrayHalfTransparent
@@ -23,7 +24,7 @@ fun GrayscalableOverlayWithContent(expandFab : MutableState<Boolean>, content: @
 {
     val animatedColor by animateColorAsState(
         targetValue = if (expandFab.value) GrayHalfTransparent else Color.Transparent,
-        animationSpec = tween(durationMillis = 500) //TODO: Outsourcing this value into integer file breaks animation. WHY?
+        animationSpec = tween(durationMillis = integerResource(id = R.integer.DefaultAnimationDurationMilliseconds))
     )
 
     // Creates a box which closes on click without animation
