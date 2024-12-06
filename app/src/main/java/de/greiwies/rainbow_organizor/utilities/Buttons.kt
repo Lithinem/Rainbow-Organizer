@@ -134,7 +134,7 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
                 onClick = { expandFab.value = !expandFab.value },
                 containerColor = Color.Blue,
                 modifier = Modifier.size(56.dp)
-                    .offset(x=(-30).dp, y = (-30).dp)
+                    .offset(x=(-30).dp, y = (-80).dp)
             ) {
                 Text("+", color = Color.White)
             }
