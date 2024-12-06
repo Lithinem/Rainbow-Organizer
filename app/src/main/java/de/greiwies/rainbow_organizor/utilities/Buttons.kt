@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -83,23 +84,10 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(0.dp),
         contentAlignment = Alignment.BottomEnd
     ) {
-        Text("MeinTestText", modifier = Modifier.align(Alignment.TopCenter))
-
-        // TODO: Codetestblock entfernen
-        // Einfahren bei Klick außerhalb des Viertelkreises
-        if (expandFab.value) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(GrayHalfTransparent)
-                    .clickable { expandFab.value = false }
-            )
-        }
-
-        // Der expandierende Viertelkreis
+        // the FAB overlay. expanding on expandFab == true
         if (expandFab.value) {
             Box(
                 modifier = Modifier
@@ -117,7 +105,7 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
                     .zIndex(2F)
                     .clickable{}
             ) {
-                // Zusätzliche Buttons im Viertelkreis
+                // Inner Buttons
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
@@ -136,12 +124,13 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
             }
         }
 
-        // Der Haupt-FAB (ausblenden bei Expansion)
+        // Main FAB. Will be disabled when expanded FAB-Field (see above) ios active
         AnimatedVisibility(visible = !expandFab.value) {
             FloatingActionButton(
                 onClick = { expandFab.value = !expandFab.value },
                 containerColor = Color.Blue,
                 modifier = Modifier.size(56.dp)
+                    .offset(x=(-30).dp, y = (-30).dp)
             ) {
                 Text("+", color = Color.White)
             }
