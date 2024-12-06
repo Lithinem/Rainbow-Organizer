@@ -6,9 +6,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import de.greiwies.rainbow_organizor.utilities.ExpandableFab
-import de.greiwies.rainbow_organizor.utilities.VariableFunctionOvalButton
-import de.greiwies.rainbow_organizor.utilities.GrayscalableOverlayWithContent
+import de.greiwies.rainbow_organizor.components.ExpandableFab
+import de.greiwies.rainbow_organizor.components.VariableFunctionOvalButton
+import de.greiwies.rainbow_organizor.components.GrayscalableOverlayWithContent
 
 // -----  DEMO Composables ---------
 

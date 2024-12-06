@@ -1,4 +1,4 @@
-package de.greiwies.rainbow_organizor.utilities
+package de.greiwies.rainbow_organizor.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateDpAsState
@@ -16,15 +16,16 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,7 +37,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import de.greiwies.rainbow_organizor.R
-import de.greiwies.rainbow_organizor.ui.theme.GrayHalfTransparent
+import de.greiwies.rainbow_organizor.ui.theme.MainColorDark
 
 @Composable
 fun VariableFunctionOvalButton(
@@ -132,11 +133,15 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
         AnimatedVisibility(visible = !expandFab.value) {
             FloatingActionButton(
                 onClick = { expandFab.value = !expandFab.value },
-                containerColor = Color.Blue,
+                containerColor = MainColorDark,
                 modifier = Modifier.size(56.dp)
                     .offset(x=(-30).dp, y = (-80).dp)
             ) {
-                Text("+", color = Color.White)
+                Icon(
+                    Icons.Outlined.Add,
+                    contentDescription = "Add New Resource",
+                    modifier = Modifier.fillMaxSize()
+                )
             }
         }
     }
