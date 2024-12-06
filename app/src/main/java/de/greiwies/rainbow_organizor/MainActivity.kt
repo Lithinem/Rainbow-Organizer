@@ -13,8 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import de.greiwies.rainbow_organizor.demos.DemoExpandableFab
 import de.greiwies.rainbow_organizor.demos.DemoVariableFunctionOvalButton
 import de.greiwies.rainbow_organizor.ui.theme.RainbowOrganizorTheme
+import de.greiwies.rainbow_organizor.utilities.ExpandableFab
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +43,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             text = "Hello $name!",
             modifier = modifier
         )
-        DemoVariableFunctionOvalButton()
+        DemoExpandableFab()
     }
 }
 
