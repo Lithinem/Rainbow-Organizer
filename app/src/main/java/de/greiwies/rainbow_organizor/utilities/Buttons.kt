@@ -29,10 +29,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.integerResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import de.greiwies.rainbow_organizor.R
 import de.greiwies.rainbow_organizor.ui.theme.GrayHalfTransparent
 
 @Composable
@@ -77,9 +80,10 @@ private fun TextInButton(buttonText: String){
 @Composable
 fun ExpandableFab(expandFab : MutableState<Boolean>) {
     val animatedSize by animateDpAsState(
-        targetValue = if (expandFab.value) 300.dp else 56.dp,
-        animationSpec = tween(durationMillis = 500)
+        targetValue = if (expandFab.value) integerResource(R.integer.Fab_FullExpandedSize).dp else integerResource(R.integer.Fab_FullInflatedSize).dp,
+        animationSpec = tween(durationMillis = 500) //TODO: Outsourcing this value into integer file breaks animation. WHY?
     )
+    val currentSize: Dp = animatedSize
 
     Box(
         modifier = Modifier
@@ -88,7 +92,7 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
         contentAlignment = Alignment.BottomEnd
     ) {
         // the FAB overlay. expanding on expandFab == true
-        if (expandFab.value) {
+        if (currentSize > integerResource(R.integer.Fab_FullInflatedSize).dp) {
             Box(
                 modifier = Modifier
                     .size(animatedSize)
