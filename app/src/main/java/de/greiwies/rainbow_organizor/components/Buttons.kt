@@ -133,7 +133,6 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
         AnimatedVisibility(visible = !expandFab.value) {
             FloatingActionButton(
                 onClick = { expandFab.value = !expandFab.value },
-                containerColor = MainColorDark,
                 modifier = Modifier.size(56.dp)
                     .offset(x=(-30).dp, y = (-80).dp)
             ) {

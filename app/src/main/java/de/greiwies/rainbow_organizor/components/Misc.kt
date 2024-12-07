@@ -1,7 +1,6 @@
 package de.greiwies.rainbow_organizor.components
 
 import android.app.Activity
-import android.view.WindowInsetsController
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -21,13 +20,13 @@ import androidx.compose.ui.zIndex
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import de.greiwies.rainbow_organizor.R
-import de.greiwies.rainbow_organizor.ui.theme.GrayHalfTransparent
+import de.greiwies.rainbow_organizor.ui.theme.OverlayBackgroundGrayHalfTransparent
 
 @Composable
 fun GrayscalableOverlayWithContent(expandFab : MutableState<Boolean>, content: @Composable () -> Unit)
 {
     val animatedColor by animateColorAsState(
-        targetValue = if (expandFab.value) GrayHalfTransparent else Color.Transparent,
+        targetValue = if (expandFab.value) OverlayBackgroundGrayHalfTransparent else Color.Transparent,
         animationSpec = tween(durationMillis = integerResource(id = R.integer.DefaultAnimationDurationMilliseconds))
     )
 
