@@ -33,3 +33,5 @@ val ContrastColorLight = Color(0xFFb9709b)
 val ContrastColorLight2 = Color(0xFFd39dbd)
 val ContrastColorDark = Color(0xFF822b5e)
 val ContrastColorDark2 = Color(0xFF631241)
+
+val GrayHalfTransparent = Color(0x665B5B5B)
