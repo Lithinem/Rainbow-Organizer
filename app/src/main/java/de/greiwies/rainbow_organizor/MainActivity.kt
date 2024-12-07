@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import de.greiwies.rainbow_organizor.components.HideSystemUI
 import de.greiwies.rainbow_organizor.demos.DemoExpandableFab
 import de.greiwies.rainbow_organizor.ui.theme.RainbowOrganizorTheme
 
@@ -23,6 +24,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         setContent {
             RainbowOrganizorTheme {
+                HideSystemUI()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
                         name = "Android",
