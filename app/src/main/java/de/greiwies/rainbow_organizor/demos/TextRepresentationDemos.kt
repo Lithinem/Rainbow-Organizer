@@ -14,6 +14,6 @@ fun DemoTextsWithDifferentStyles(){
     Text("Unterüberschrift: Buchzusammenfassung", style = MaterialTheme.typography.headlineMedium)
     //Text("headlineSmall", style = MaterialTheme.typography.headlineSmall)
 
-    Text("Textblock: Dieses Buch lässt sich wie folgtt zusammenfassen...", style = MaterialTheme.typography.bodyMedium)
+    Text("Textblock: Dieses Buch lässt sich wie folgt zusammenfassen...", style = MaterialTheme.typography.bodyMedium)
     Text("Zusatzinfo: ...Mehr lesen...", style = MaterialTheme.typography.bodySmall)
 }
