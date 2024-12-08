@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import de.greiwies.rainbow_organizor.components.HideSystemUI
+import de.greiwies.rainbow_organizor.data.BookView
 import de.greiwies.rainbow_organizor.demos.DemoExpandableFab
 import de.greiwies.rainbow_organizor.ui.theme.RainbowOrganizorTheme
 
@@ -43,6 +44,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             text = "Hello $name!",
             modifier = modifier
         )
+        BookView()
         DemoExpandableFab()
     }
 }
