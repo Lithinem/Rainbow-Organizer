@@ -17,6 +17,7 @@ import de.greiwies.rainbow_organizor.components.HideSystemUI
 import de.greiwies.rainbow_organizor.components.MainFabWithGrayscaledBackgroundOverlay
 import de.greiwies.rainbow_organizor.demos.DemoExpandableFab
 import de.greiwies.rainbow_organizor.demos.DemoTextsWithDifferentStyles
+import de.greiwies.rainbow_organizor.demos.ScaffoldDemo
 import de.greiwies.rainbow_organizor.ui.theme.RainbowOrganizorTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,12 +29,13 @@ class MainActivity : ComponentActivity() {
             RainbowOrganizorTheme {
                 HideSystemUI()
                 MainFabWithGrayscaledBackgroundOverlay()
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                ScaffoldDemo()
+                //Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                //    Greeting(
+                //        name = "Android",
+                //        modifier = Modifier.padding(innerPadding)
+                //    )
+                //}
             }
         }
     }
@@ -46,7 +48,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             text = "Hello $name!",
             modifier = modifier
         )
-        DemoTextsWithDifferentStyles()
     }
 }
 
