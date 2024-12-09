@@ -14,7 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import de.greiwies.rainbow_organizor.components.HideSystemUI
+import de.greiwies.rainbow_organizor.components.MainFabWithGrayscaledBackgroundOverlay
 import de.greiwies.rainbow_organizor.demos.DemoExpandableFab
+import de.greiwies.rainbow_organizor.demos.DemoTextsWithDifferentStyles
 import de.greiwies.rainbow_organizor.ui.theme.RainbowOrganizorTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,6 +27,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             RainbowOrganizorTheme {
                 HideSystemUI()
+                MainFabWithGrayscaledBackgroundOverlay()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
                         name = "Android",
@@ -43,7 +46,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             text = "Hello $name!",
             modifier = modifier
         )
-        DemoExpandableFab()
+        DemoTextsWithDifferentStyles()
     }
 }
 

@@ -5,6 +5,7 @@ import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,6 +27,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -37,7 +40,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import de.greiwies.rainbow_organizor.R
-import de.greiwies.rainbow_organizor.ui.theme.MainColorDark
 
 @Composable
 fun VariableFunctionOvalButton(
@@ -79,6 +81,16 @@ private fun TextInButton(buttonText: String){
 }
 
 @Composable
+fun MainFabWithGrayscaledBackgroundOverlay(){
+    // Defines if overlay is visible
+    val expandFab = remember { mutableStateOf(false) }
+
+    GrayscalableOverlayWithContent (expandFab, true, true)
+    //Defines FAB as the End of Content
+    ExpandableFab(expandFab)
+}
+
+@Composable
 fun ExpandableFab(expandFab : MutableState<Boolean>) {
     val animatedSize by animateDpAsState(
         targetValue = if (expandFab.value) integerResource(R.integer.Fab_FullExpandedSize).dp else integerResource(R.integer.Fab_FullInflatedSize).dp,
@@ -86,10 +98,12 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
     )
     val currentSize: Dp = animatedSize
 
+    //Outer fill the whole screen box (used as basis for relational positioning)
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(0.dp),
+            .padding(0.dp)
+            .zIndex(2F),
         contentAlignment = Alignment.BottomEnd
     ) {
         // the FAB overlay. expanding on expandFab == true
@@ -107,8 +121,10 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
                     )
                     .background(Color.Gray)
                     .align(Alignment.BottomEnd)
-                    .zIndex(2F)
-                    .clickable{}
+                    .clickable(
+                        indication = null, //suppresses the Ripple-Animation
+                        interactionSource = remember { MutableInteractionSource() }
+                    ){}
             ) {
                 // Inner Buttons
                 Column(
@@ -133,7 +149,6 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
         AnimatedVisibility(visible = !expandFab.value) {
             FloatingActionButton(
                 onClick = { expandFab.value = !expandFab.value },
-                containerColor = MainColorDark,
                 modifier = Modifier.size(56.dp)
                     .offset(x=(-30).dp, y = (-80).dp)
             ) {
