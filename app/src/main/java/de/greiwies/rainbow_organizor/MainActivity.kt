@@ -45,8 +45,9 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             modifier = modifier
         )
         DemoTextsWithDifferentStyles()
-        DemoExpandableFab()
+
     }
+    DemoExpandableFab()
 }
 
 @Preview(showBackground = true)
