@@ -28,7 +28,6 @@ fun ScaffoldDemo() {
             )
         },
         content = { paddingValues ->
-            // Hier kannst du den Hauptinhalt deiner App hinzufügen
             Text(
                 text = "Inhalt der App",
                 modifier = Modifier

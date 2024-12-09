@@ -13,31 +13,48 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.ViewModelProvider
 import de.greiwies.rainbow_organizor.components.HideSystemUI
 import de.greiwies.rainbow_organizor.components.MainFabWithGrayscaledBackgroundOverlay
 import de.greiwies.rainbow_organizor.demos.DemoExpandableFab
 import de.greiwies.rainbow_organizor.demos.DemoTextsWithDifferentStyles
+import de.greiwies.rainbow_organizor.demos.EventComposablesDemoParentComposable
 import de.greiwies.rainbow_organizor.demos.ScaffoldDemo
 import de.greiwies.rainbow_organizor.ui.theme.RainbowOrganizorTheme
 
 class MainActivity : ComponentActivity() {
+    private lateinit var viewModel: RainbowViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(RainbowViewModel::class.java)
+
         enableEdgeToEdge()
         installSplashScreen()
         setContent {
+            //LocalDemoArea(viewModel)
             RainbowOrganizorTheme {
                 HideSystemUI()
                 MainFabWithGrayscaledBackgroundOverlay()
-                ScaffoldDemo()
-                //Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                //    Greeting(
-                //        name = "Android",
-                //        modifier = Modifier.padding(innerPadding)
-                //    )
-                //}
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    Greeting(
+                        name = "Android",
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                }
             }
         }
+    }
+}
+
+//TODO: Delete after finish
+@Composable
+fun LocalDemoArea(viewModel: RainbowViewModel){
+    RainbowOrganizorTheme {
+        HideSystemUI()
+        MainFabWithGrayscaledBackgroundOverlay()
+        //ScaffoldDemo()
+        EventComposablesDemoParentComposable(viewModel)
     }
 }
 
