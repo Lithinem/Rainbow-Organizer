@@ -32,10 +32,16 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         installSplashScreen()
         setContent {
+            //LocalDemoArea(viewModel)
             RainbowOrganizorTheme {
                 HideSystemUI()
                 MainFabWithGrayscaledBackgroundOverlay()
-                LocalDemoArea(viewModel)
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    Greeting(
+                        name = "Android",
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                }
             }
         }
     }
@@ -44,14 +50,12 @@ class MainActivity : ComponentActivity() {
 //TODO: Delete after finish
 @Composable
 fun LocalDemoArea(viewModel: RainbowViewModel){
-    //ScaffoldDemo()
-    EventComposablesDemoParentComposable(viewModel)
-    //Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-    //    Greeting(
-    //        name = "Android",
-    //        modifier = Modifier.padding(innerPadding)
-    //    )
-    //}
+    RainbowOrganizorTheme {
+        HideSystemUI()
+        MainFabWithGrayscaledBackgroundOverlay()
+        //ScaffoldDemo()
+        EventComposablesDemoParentComposable(viewModel)
+    }
 }
 
 @Composable
