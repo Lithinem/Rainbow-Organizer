@@ -23,26 +23,47 @@ import de.greiwies.rainbow_organizor.R
 import de.greiwies.rainbow_organizor.ui.theme.OverlayBackgroundGrayHalfTransparent
 
 @Composable
-fun GrayscalableOverlayWithContent(expandFab : MutableState<Boolean>, content: @Composable () -> Unit)
+fun GrayscalableOverlayWithContent(activateOverlay : MutableState<Boolean>, overlayBlocksInteractionBelow: Boolean, overlayClosesOnSelfInteraction: Boolean)
 {
     val animatedColor by animateColorAsState(
-        targetValue = if (expandFab.value) OverlayBackgroundGrayHalfTransparent else Color.Transparent,
+        targetValue = if (activateOverlay.value) OverlayBackgroundGrayHalfTransparent else Color.Transparent,
         animationSpec = tween(durationMillis = integerResource(id = R.integer.DefaultAnimationDurationMilliseconds))
     )
 
-    // Creates a box which closes on click without animation
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(animatedColor)
-            .clickable (
-                indication = null, //suppresses the Ripple-Animation
-                interactionSource = remember { MutableInteractionSource() }
-            ){ expandFab.value = false }
-            .zIndex(1F)
-    ){
-        content()
+    // Creates a box which closes on click without click animation
+    // is only active when used to prevent blocking everything due to its clickable behaviour
+    if (activateOverlay.value)
+    {
+        if (overlayBlocksInteractionBelow)
+        {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(animatedColor)
+                    .clickable (
+                        indication = null, //suppresses the Ripple-Animation
+                        interactionSource = remember { MutableInteractionSource() }
+                    ){
+                        if(overlayClosesOnSelfInteraction)
+                        {
+                            activateOverlay.value = false
+                        }
+                    }
+                    .zIndex(1F)
+            ){  }
+        }
+        else
+        {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(animatedColor)
+                    .zIndex(1F)
+            ){  }
+        }
+
     }
+
 }
 
 
