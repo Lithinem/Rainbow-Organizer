@@ -16,7 +16,6 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
 import de.greiwies.rainbow_organizor.components.HideSystemUI
 import de.greiwies.rainbow_organizor.components.MainFabWithGrayscaledBackgroundOverlay
-import de.greiwies.rainbow_organizor.demos.DemoExpandableFab
 import de.greiwies.rainbow_organizor.demos.DemoTextsWithDifferentStyles
 import de.greiwies.rainbow_organizor.demos.EventComposablesDemoParentComposable
 import de.greiwies.rainbow_organizor.demos.ScaffoldDemo
