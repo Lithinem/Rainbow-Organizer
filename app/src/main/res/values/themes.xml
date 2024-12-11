@@ -3,6 +3,6 @@
     <style name="Theme.RainbowOrganizor" parent="android:Theme.Material.Light.NoActionBar">
     <item name="android:windowActionBar">false</item>
     <item name="android:windowNoTitle">true</item>
-    <item name="android:windowFullscreen">true</item>
+    <item name="android:windowFullscreen">false</item>
     </style>
 </resources>

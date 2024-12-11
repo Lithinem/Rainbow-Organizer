@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             //LocalDemoArea(viewModel)
             RainbowOrganizorTheme {
-                HideSystemUI()
+                //HideSystemUI()
                 MainFabWithGrayscaledBackgroundOverlay()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
