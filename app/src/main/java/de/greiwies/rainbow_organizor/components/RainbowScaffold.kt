@@ -18,10 +18,12 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import de.greiwies.rainbow_organizor.R
 import de.greiwies.rainbow_organizor.RainbowViewModel
+import de.greiwies.rainbow_organizor.ui.theme.MainColorMain
 
 
 @Composable
@@ -50,28 +52,29 @@ fun TopAppBarLandingPage(){
     val errorText = stringResource(R.string.function_out_of_scope_error)
 
     TopAppBar(
-        title = { Text(stringResource(id = R.string.app_name)) },
+        title = { Text(stringResource(id = R.string.app_name), color = Color.Black) },
         navigationIcon = {
             IconButton(onClick = { /* TODO: Implement menu (not Part of Project) */
                 Toast.makeText(context, errorText,Toast.LENGTH_LONG).show()
             }) {
-                Icon(Icons.Default.Menu, contentDescription = "Menu")
+                Icon(Icons.Default.Menu, contentDescription = "Menu", tint = Color.Black)
             }
         },
         actions = {
             IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
                 Toast.makeText(context, errorText,Toast.LENGTH_LONG).show()
             }) {
-                Text("?", style = MaterialTheme.typography.labelLarge)
+                Text("?", style = MaterialTheme.typography.labelLarge, color = Color.Black)
             }
             IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
                 Toast.makeText(context, errorText,Toast.LENGTH_LONG).show()
             }) {
-                Icon(Icons.Default.Search, contentDescription = "Search")
+                Icon(Icons.Default.Search, contentDescription = "Search", tint = Color.Black)
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
+            //containerColor = MaterialTheme.colorScheme.primaryContainer
+            containerColor = MainColorMain
         )
     )
 }
