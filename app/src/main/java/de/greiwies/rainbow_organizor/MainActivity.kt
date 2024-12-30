@@ -20,6 +20,8 @@ import de.greiwies.rainbow_organizor.components.RainbowScaffold
 import de.greiwies.rainbow_organizor.demos.DemoTextsWithDifferentStyles
 import de.greiwies.rainbow_organizor.demos.EventComposablesDemoParentComposable
 import de.greiwies.rainbow_organizor.demos.ScaffoldDemo
+import de.greiwies.rainbow_organizor.screens.AlphabeticScrollBar
+import de.greiwies.rainbow_organizor.screens.LandingPageContent
 import de.greiwies.rainbow_organizor.ui.theme.RainbowOrganizorTheme
 
 class MainActivity : ComponentActivity() {
@@ -52,7 +54,11 @@ class MainActivity : ComponentActivity() {
 fun LocalDemoArea(viewModel: RainbowViewModel){
     RainbowOrganizorTheme {
         MainFabWithGrayscaledBackgroundOverlay()
-        RainbowScaffold(viewModel, R.integer.TopBarCodeLandingPage)
+        RainbowScaffold(viewModel, R.integer.TopBarCodeLandingPage){ paddingValues ->
+            //Text("Hallo Welt", Modifier.padding(paddingValues))
+            //LandingPageContent(Modifier.padding(paddingValues))
+            AlphabeticScrollBar()
+        }
         //EventComposablesDemoParentComposable(viewModel)
     }
 }

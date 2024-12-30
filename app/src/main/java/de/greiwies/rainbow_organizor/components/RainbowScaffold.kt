@@ -2,6 +2,7 @@ package de.greiwies.rainbow_organizor.components
 
 import android.content.res.Resources.Theme
 import android.widget.Toast
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -29,20 +30,15 @@ import de.greiwies.rainbow_organizor.ui.theme.RainbowOrganizorTopBarTheme
 
 
 @Composable
-fun RainbowScaffold(viewModel: RainbowViewModel, topBarCode: Int) {
+fun RainbowScaffold(viewModel: RainbowViewModel, topBarCode: Int, content: @Composable (PaddingValues) -> Unit) {
     Scaffold(
         topBar = {
             if (topBarCode == R.integer.TopBarCodeLandingPage){
                 TopAppBarLandingPage()
             }
         },
-        content = { paddingValues ->
-            Text(
-                text = "Inhalt der App",
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues)
-            )
+        content = { innerPadding ->
+            content(innerPadding)
         }
     )
 }
