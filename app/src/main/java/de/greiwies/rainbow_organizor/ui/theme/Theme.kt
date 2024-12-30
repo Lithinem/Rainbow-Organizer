@@ -129,3 +129,18 @@ fun RainbowOrganizorTheme(
         content = content
     )
 }
+
+@Composable
+fun RainbowOrganizorTopBarTheme(
+    // Dynamic color is available on Android 12+
+    //dynamicColor: Boolean = true,
+    content: @Composable () -> Unit
+) {
+    val colorScheme =  LightColorScheme
+
+    MaterialTheme(
+        colorScheme = colorScheme,
+        typography = RainbowTypography,
+        content = content
+    )
+}

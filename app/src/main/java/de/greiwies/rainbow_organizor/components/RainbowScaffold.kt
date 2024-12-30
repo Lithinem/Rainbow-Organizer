@@ -1,5 +1,6 @@
 package de.greiwies.rainbow_organizor.components
 
+import android.content.res.Resources.Theme
 import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -24,6 +25,7 @@ import androidx.compose.ui.res.stringResource
 import de.greiwies.rainbow_organizor.R
 import de.greiwies.rainbow_organizor.RainbowViewModel
 import de.greiwies.rainbow_organizor.ui.theme.MainColorMain
+import de.greiwies.rainbow_organizor.ui.theme.RainbowOrganizorTopBarTheme
 
 
 @Composable
@@ -51,30 +53,33 @@ fun TopAppBarLandingPage(){
     val context = LocalContext.current
     val errorText = stringResource(R.string.function_out_of_scope_error)
 
-    TopAppBar(
-        title = { Text(stringResource(id = R.string.app_name), color = Color.Black) },
-        navigationIcon = {
-            IconButton(onClick = { /* TODO: Implement menu (not Part of Project) */
-                Toast.makeText(context, errorText,Toast.LENGTH_LONG).show()
-            }) {
-                Icon(Icons.Default.Menu, contentDescription = "Menu", tint = Color.Black)
-            }
-        },
-        actions = {
-            IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
-                Toast.makeText(context, errorText,Toast.LENGTH_LONG).show()
-            }) {
-                Text("?", style = MaterialTheme.typography.labelLarge, color = Color.Black)
-            }
-            IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
-                Toast.makeText(context, errorText,Toast.LENGTH_LONG).show()
-            }) {
-                Icon(Icons.Default.Search, contentDescription = "Search", tint = Color.Black)
-            }
-        },
-        colors = TopAppBarDefaults.topAppBarColors(
-            //containerColor = MaterialTheme.colorScheme.primaryContainer
-            containerColor = MainColorMain
+    RainbowOrganizorTopBarTheme {
+        TopAppBar(
+            title = { Text(stringResource(id = R.string.app_name)) },
+            navigationIcon = {
+                IconButton(onClick = { /* TODO: Implement menu (not Part of Project) */
+                    Toast.makeText(context, errorText,Toast.LENGTH_LONG).show()
+                }) {
+                    Icon(Icons.Default.Menu, contentDescription = "Menu")
+                }
+            },
+            actions = {
+                IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
+                    Toast.makeText(context, errorText,Toast.LENGTH_LONG).show()
+                }) {
+                    Text("?", style = MaterialTheme.typography.labelLarge)
+                }
+                IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
+                    Toast.makeText(context, errorText,Toast.LENGTH_LONG).show()
+                }) {
+                    Icon(Icons.Default.Search, contentDescription = "Search")
+                }
+            },
+            colors = TopAppBarDefaults.topAppBarColors(
+                //containerColor = MaterialTheme.colorScheme.primaryContainer
+                containerColor = MainColorMain
+            )
         )
-    )
+    }
 }
+
