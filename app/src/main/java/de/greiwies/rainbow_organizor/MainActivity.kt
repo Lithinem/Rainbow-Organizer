@@ -16,6 +16,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
 import de.greiwies.rainbow_organizor.components.HideSystemUI
 import de.greiwies.rainbow_organizor.components.MainFabWithGrayscaledBackgroundOverlay
+import de.greiwies.rainbow_organizor.components.RainbowScaffold
 import de.greiwies.rainbow_organizor.demos.DemoTextsWithDifferentStyles
 import de.greiwies.rainbow_organizor.demos.EventComposablesDemoParentComposable
 import de.greiwies.rainbow_organizor.demos.ScaffoldDemo
@@ -31,29 +32,28 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         installSplashScreen()
         setContent {
-            //LocalDemoArea(viewModel)
-            RainbowOrganizorTheme {
-                //HideSystemUI()
-                MainFabWithGrayscaledBackgroundOverlay()
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            LocalDemoArea(viewModel)
+            //RainbowOrganizorTheme {
+            //    //HideSystemUI()
+            //    MainFabWithGrayscaledBackgroundOverlay()
+            //    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+            //        Greeting(
+            //            name = "Android",
+            //            modifier = Modifier.padding(innerPadding)
+            //        )
+            //    }
+            //}
         }
     }
 }
 
-//TODO: Delete after finish
+//TODO: Migrate into Joshuas Project after finish
 @Composable
 fun LocalDemoArea(viewModel: RainbowViewModel){
     RainbowOrganizorTheme {
-        HideSystemUI()
         MainFabWithGrayscaledBackgroundOverlay()
-        //ScaffoldDemo()
-        EventComposablesDemoParentComposable(viewModel)
+        RainbowScaffold(viewModel, R.integer.TopBarCodeLandingPage)
+        //EventComposablesDemoParentComposable(viewModel)
     }
 }
 

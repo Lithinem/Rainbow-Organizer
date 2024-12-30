@@ -98,7 +98,12 @@ private val RainbowTypography = Typography(
     bodySmall = TextStyle(
         fontSize = 10.sp,
         fontWeight = FontWeight.Normal
-    )
+    ),
+
+    labelLarge = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 24.sp
+    ),
 )
 
 @Composable
