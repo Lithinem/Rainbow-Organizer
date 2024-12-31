@@ -1,5 +1,6 @@
 package de.greiwies.rainbow_organizor.components
 
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
@@ -34,7 +35,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.integerResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -98,6 +101,9 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
         animationSpec = tween(durationMillis = integerResource(id = R.integer.DefaultAnimationDurationMilliseconds))
     )
     val currentSize: Dp = animatedSize
+    val errorText = stringResource(R.string.function_out_of_scope_error)
+    val context = LocalContext.current
+
 
     //Outer fill the whole screen box (used as basis for relational positioning)
     Box(
@@ -135,11 +141,15 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
                     verticalArrangement = Arrangement.Bottom,
                     horizontalAlignment = Alignment.End
                 ) {
-                    Button(onClick = { /* TODO: Aktion 1 */ }) {
+                    Button(onClick = { // TODO: Aktion 1
+                        Toast.makeText(context, errorText, Toast.LENGTH_LONG).show()
+                    }) {
                         Text("Button 1")
                     }
                     Spacer(modifier = Modifier.height(8.dp))
-                    Button(onClick = { /* TODO: Aktion 2 */ }) {
+                    Button(onClick = { // TODO: Aktion 2
+                        Toast.makeText(context, errorText, Toast.LENGTH_LONG).show()
+                    }) {
                         Text("Button 2")
                     }
                 }
@@ -150,8 +160,8 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
         AnimatedVisibility(visible = !expandFab.value) {
             FloatingActionButton(
                 onClick = { expandFab.value = !expandFab.value },
-                modifier = Modifier.size(56.dp)
-                    .offset(x=(-30).dp, y = (-80).dp),
+                modifier = Modifier.size(80.dp)
+                    .offset(x=(-60).dp, y = (-80).dp),
                 shape = CircleShape
             ) {
                 Icon(
