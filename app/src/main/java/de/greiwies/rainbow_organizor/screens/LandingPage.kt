@@ -1,7 +1,6 @@
 package de.greiwies.rainbow_organizor.screens
 
-import android.app.Fragment
-import android.view.View
+import android.graphics.Picture
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -40,8 +39,6 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import de.greiwies.rainbow_organizor.LocalNavController
 import de.greiwies.rainbow_organizor.RainbowViewModel
 import kotlinx.coroutines.delay
@@ -66,16 +63,13 @@ fun DetailsScreen(item: String?) {
 fun LandingPage(viewModel: RainbowViewModel)
 {
     val items = remember { LoremIpsum().values.first().split(" ").plus("ZETA").sortedBy { it.lowercase() } }
-    AlphabeticScrollBar(viewModel, items)
+    LandingPageContent(viewModel, items)
 }
 
 
 // Derived from https://stackoverflow.com/questions/71657480/alphabetical-scrollbar-in-jetpack-compose
 @Composable
-fun AlphabeticScrollBar(viewModel: RainbowViewModel, items: List<String>) {
-    val navController = LocalNavController.current
-        ?: throw IllegalStateException("NavController not found in the CompositionLocal")
-
+private fun LandingPageContent(viewModel: RainbowViewModel, items: List<String>) {
     val headers = remember { items.map { it.first().uppercase() }.toSet().toList() }
     val listState = rememberLazyListState()
     val scope = rememberCoroutineScope()
@@ -110,14 +104,15 @@ fun AlphabeticScrollBar(viewModel: RainbowViewModel, items: List<String>) {
                 modifier = Modifier.weight(1f)
             ) {
                 items(items.size) { index ->
-                    Text(
-                        text = items[index],
-                        style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.clickable {
-                            navController.navigate("details/${items[index]}")
-                        }
-                    )
-                    Spacer(modifier = Modifier.padding(10.dp))
+                    ContentElement(items[index])
+                    //Text(
+                    //    text = items[index],
+                    //    style = MaterialTheme.typography.bodyMedium,
+                    //    modifier = Modifier.clickable {
+                    //        navController.navigate("details/${items[index]}")
+                    //    }
+                    //)
+                    //Spacer(modifier = Modifier.padding(10.dp))
                 }
             }
 
@@ -186,4 +181,21 @@ fun AlphabeticScrollBar(viewModel: RainbowViewModel, items: List<String>) {
             }
         }
     }
+}
+
+@Composable
+private fun ContentElement(item: String){
+    val navController = LocalNavController.current
+        ?: throw IllegalStateException("NavController not found in the CompositionLocal")
+
+    Picture()
+
+    Text(
+        text = item,
+        style = MaterialTheme.typography.bodyMedium,
+        modifier = Modifier.clickable {
+            navController.navigate("details/2")
+        }
+    )
+    Spacer(modifier = Modifier.padding(10.dp))
 }
