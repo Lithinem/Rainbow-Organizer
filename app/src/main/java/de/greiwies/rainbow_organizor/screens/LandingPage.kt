@@ -83,20 +83,6 @@ fun LandingPageContent(modifier: Modifier = Modifier) {
 
 
 @Composable
-fun AlphabeticScrollBar() {
-    val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "list") {
-        composable("list") {
-            AlphabeticScrollBar(navController)
-        }
-        composable("details/{item}") { backStackEntry ->
-            val item = backStackEntry.arguments?.getString("item")
-            DetailsScreen(item)
-        }
-    }
-}
-
-@Composable
 fun DetailsScreen(item: String?) {
     Box(
         contentAlignment = Alignment.Center,
