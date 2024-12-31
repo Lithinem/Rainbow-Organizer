@@ -5,23 +5,19 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
-import de.greiwies.rainbow_organizor.components.HideSystemUI
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import de.greiwies.rainbow_organizor.components.MainFabWithGrayscaledBackgroundOverlay
 import de.greiwies.rainbow_organizor.components.RainbowScaffold
-import de.greiwies.rainbow_organizor.demos.DemoTextsWithDifferentStyles
-import de.greiwies.rainbow_organizor.demos.EventComposablesDemoParentComposable
-import de.greiwies.rainbow_organizor.demos.ScaffoldDemo
-import de.greiwies.rainbow_organizor.screens.AlphabeticScrollBar
-import de.greiwies.rainbow_organizor.screens.LandingPageContent
+import de.greiwies.rainbow_organizor.screens.PageHomepage
+import de.greiwies.rainbow_organizor.screens.DetailsScreen
 import de.greiwies.rainbow_organizor.ui.theme.RainbowOrganizorTheme
 
 class MainActivity : ComponentActivity() {
@@ -53,12 +49,12 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun LocalDemoArea(viewModel: RainbowViewModel){
     RainbowOrganizorTheme {
-        MainFabWithGrayscaledBackgroundOverlay()
-        RainbowScaffold(viewModel, R.integer.TopBarCodeLandingPage){ paddingValues ->
-            //Text("Hallo Welt", Modifier.padding(paddingValues))
-            //LandingPageContent(Modifier.padding(paddingValues))
-            AlphabeticScrollBar()
-        }
+        AppNavigation(viewModel)
+        //RainbowScaffold(viewModel, R.integer.TopBarCodeLandingPage){ paddingValues ->
+        //    //Text("Hallo Welt", Modifier.padding(paddingValues))
+        //    //LandingPageContent(Modifier.padding(paddingValues))
+        //    PageHomepage()
+        //}
         //EventComposablesDemoParentComposable(viewModel)
     }
 }
@@ -70,6 +66,20 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             text = "Hello $name!",
             modifier = modifier
         )
+    }
+}
+
+@Composable
+fun AppNavigation(viewModel: RainbowViewModel){
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = "list") {
+        composable("list") {
+            PageHomepage(navController, viewModel)
+        }
+        composable("details/{item}") { backStackEntry ->
+            val item = backStackEntry.arguments?.getString("item")
+            DetailsScreen(item)
+        }
     }
 }
 
