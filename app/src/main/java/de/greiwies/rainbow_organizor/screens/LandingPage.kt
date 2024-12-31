@@ -96,7 +96,7 @@ fun DetailsScreen(item: String?) {
 }
 
 
-// Basis Source from https://stackoverflow.com/questions/71657480/alphabetical-scrollbar-in-jetpack-compose
+// Derived from https://stackoverflow.com/questions/71657480/alphabetical-scrollbar-in-jetpack-compose
 @Composable
 fun AlphabeticScrollBar(navController: NavHostController){
     val items = remember { LoremIpsum().values.first().split(" ").plus("ZETA").sortedBy { it.lowercase() } }
