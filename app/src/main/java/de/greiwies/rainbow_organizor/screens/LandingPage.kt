@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -188,14 +190,36 @@ private fun ContentElement(item: String){
     val navController = LocalNavController.current
         ?: throw IllegalStateException("NavController not found in the CompositionLocal")
 
-    Picture()
 
-    Text(
-        text = item,
-        style = MaterialTheme.typography.bodyMedium,
-        modifier = Modifier.clickable {
-            navController.navigate("details/2")
+    Box(modifier = Modifier.clickable {
+        navController.navigate("details/2")
+    }.fillMaxWidth())
+    {
+        Column {
+            Spacer(modifier = Modifier.padding(5.dp))
+
+            Row {
+                Text("Placeholder Picture")
+                Column {
+                    Text(
+                        text = item,
+                        style = MaterialTheme.typography.headlineLarge
+                    )
+                    Text(
+                        text = item,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                    Text(
+                        text = item,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.padding(10.dp))
+
+            //Visible Separator
+            Box(modifier = Modifier.background(Color.Red).fillMaxWidth().height(4.dp))
         }
-    )
-    Spacer(modifier = Modifier.padding(10.dp))
+    }
 }
