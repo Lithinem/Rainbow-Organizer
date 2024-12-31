@@ -49,12 +49,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun LocalDemoArea(viewModel: RainbowViewModel){
     RainbowOrganizorTheme {
-        MainFabWithGrayscaledBackgroundOverlay()
-        RainbowScaffold(viewModel, R.integer.TopBarCodeLandingPage){ paddingValues ->
-            //Text("Hallo Welt", Modifier.padding(paddingValues))
-            //LandingPageContent(Modifier.padding(paddingValues))
-            AppNavigation(viewModel)
-        }
+        AppNavigation(viewModel)
         //EventComposablesDemoParentComposable(viewModel)
     }
 }
@@ -64,11 +59,18 @@ fun AppNavigation(viewModel: RainbowViewModel) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "list") {
         composable("list") {
-            AlphabeticScrollBar(navController)
+            MainFabWithGrayscaledBackgroundOverlay()
+            RainbowScaffold(viewModel, R.integer.TopBarCodeLandingPage){ paddingValues ->
+                //Text("Hallo Welt", Modifier.padding(paddingValues))
+                //LandingPageContent(Modifier.padding(paddingValues))
+                AlphabeticScrollBar(navController)
+            }
         }
         composable("details/{item}") { backStackEntry ->
             val item = backStackEntry.arguments?.getString("item")
-            DetailsScreen(item)
+            RainbowScaffold(viewModel, 0) {
+                DetailsScreen(item)
+            }
         }
     }
 }

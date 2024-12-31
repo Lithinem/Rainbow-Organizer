@@ -30,6 +30,8 @@ import de.greiwies.rainbow_organizor.ui.theme.MainColorMain
 import de.greiwies.rainbow_organizor.ui.theme.RainbowOrganizorTopBarTheme
 
 
+//Scaffold MUST be used in each Screen as not doing so will break the MaterialTheme-API.
+
 @Composable
 fun RainbowScaffold(viewModel: RainbowViewModel, topBarCode: Int, content: @Composable (PaddingValues) -> Unit) {
     Scaffold(
