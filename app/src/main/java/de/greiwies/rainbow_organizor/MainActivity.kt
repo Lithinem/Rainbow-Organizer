@@ -63,8 +63,8 @@ fun AppNavigation(viewModel: RainbowViewModel) {
     val navController = rememberNavController()
 
     CompositionLocalProvider(LocalNavController provides navController) {
-        NavHost(navController = navController, startDestination = "list") {
-            composable("list") {
+        NavHost(navController = navController, startDestination = "landing_page") {
+            composable("landing_page") {
                 MainFabWithGrayscaledBackgroundOverlay()
                 RainbowScaffold(viewModel, R.integer.TopBarCodeLandingPage){ paddingValues ->
                     //Text("Hallo Welt", Modifier.padding(paddingValues))
