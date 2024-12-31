@@ -32,13 +32,26 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import de.greiwies.rainbow_organizor.R
-import de.greiwies.rainbow_organizor.RainbowViewModel
-import de.greiwies.rainbow_organizor.components.MainFabWithGrayscaledBackgroundOverlay
-import de.greiwies.rainbow_organizor.components.RainbowScaffold
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import kotlin.math.abs
 
+
+@Composable
+fun AlphabeticScrollBar() {
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = "list") {
+        composable("list") {
+            AlphabeticScrollBar(navController)
+        }
+        composable("details/{item}") { backStackEntry ->
+            val item = backStackEntry.arguments?.getString("item")
+            DetailsScreen(item)
+        }
+    }
+}
 
 @Composable
 fun DetailsScreen(item: String?) {
@@ -53,19 +66,10 @@ fun DetailsScreen(item: String?) {
     }
 }
 
-@Composable
-fun PageHomepage(navController: NavHostController, viewModel: RainbowViewModel) {
-    MainFabWithGrayscaledBackgroundOverlay()
-    RainbowScaffold(viewModel, R.integer.TopBarCodeLandingPage) { paddingValues ->
-        HomePageInlay(navController)
-    }
-}
-
-
 
 // Basis Source from https://stackoverflow.com/questions/71657480/alphabetical-scrollbar-in-jetpack-compose
 @Composable
-fun HomePageInlay(navController: NavHostController){
+fun AlphabeticScrollBar(navController: NavHostController){
     val items = remember { LoremIpsum().values.first().split(" ").plus("ZETA").sortedBy { it.lowercase() } }
     val headers = remember { items.map { it.first().uppercase() }.toSet().toList() }
     Row {
