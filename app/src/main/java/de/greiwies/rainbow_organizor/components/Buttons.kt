@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
@@ -150,7 +151,8 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
             FloatingActionButton(
                 onClick = { expandFab.value = !expandFab.value },
                 modifier = Modifier.size(56.dp)
-                    .offset(x=(-30).dp, y = (-80).dp)
+                    .offset(x=(-30).dp, y = (-80).dp),
+                shape = CircleShape
             ) {
                 Icon(
                     Icons.Outlined.Add,
