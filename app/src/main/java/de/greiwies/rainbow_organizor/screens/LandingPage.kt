@@ -4,9 +4,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -19,6 +22,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
@@ -26,6 +30,10 @@ import androidx.compose.ui.layout.boundsInParent
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import kotlin.math.abs
 
@@ -60,11 +68,9 @@ fun LandingPageContent(modifier: Modifier = Modifier) {
         "Bleibe immer auf dem neuesten Stand."
     )
 
-    // LazyColumn für die Liste der Texte
     LazyColumn(modifier = modifier) {
-        // Hier verwenden wir `items` richtig
-        items(textList.size) { index ->  // Statt `items(textList)` sollte `items(textList.size)` verwendet werden
-            val text = textList[index]  // Hole den Text anhand des Index
+        items(textList.size) { index ->
+            val text = textList[index]
             Text(
                 text = text,
                 style = MaterialTheme.typography.bodyMedium,
@@ -74,10 +80,39 @@ fun LandingPageContent(modifier: Modifier = Modifier) {
     }
 }
 
+
+@Composable
+fun AlphabeticScrollBar() {
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = "list") {
+        composable("list") {
+            AlphabeticScrollBar(navController)
+        }
+        composable("details/{item}") { backStackEntry ->
+            val item = backStackEntry.arguments?.getString("item")
+            DetailsScreen(item)
+        }
+    }
+}
+
+@Composable
+fun DetailsScreen(item: String?) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Text(
+            text = "Selected Item: ${item ?: "Unknown"}",
+            style = MaterialTheme.typography.headlineMedium
+        )
+    }
+}
+
+
 // Basis Source from https://stackoverflow.com/questions/71657480/alphabetical-scrollbar-in-jetpack-compose
 @Composable
-fun AlphabeticScrollBar(){
-    val items = remember { LoremIpsum().values.first().split(" ").sortedBy { it.lowercase() } }
+fun AlphabeticScrollBar(navController: NavHostController){
+    val items = remember { LoremIpsum().values.first().split(" ").plus("ZETA").sortedBy { it.lowercase() } }
     val headers = remember { items.map { it.first().uppercase() }.toSet().toList() }
     Row {
         val listState = rememberLazyListState()
@@ -86,7 +121,11 @@ fun AlphabeticScrollBar(){
             modifier = Modifier.weight(1f)
         ) {
             items(items.size) { index ->
-                Text(items.get(index))
+                Text(
+                    text = items.get(index),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Spacer(modifier = Modifier.padding(10.dp))
             }
         }
         val offsets = remember { mutableStateMapOf<Int, Float>() }

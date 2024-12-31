@@ -2,6 +2,7 @@ package de.greiwies.rainbow_organizor.components
 
 import android.content.res.Resources.Theme
 import android.widget.Toast
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -38,7 +39,10 @@ fun RainbowScaffold(viewModel: RainbowViewModel, topBarCode: Int, content: @Comp
             }
         },
         content = { innerPadding ->
-            content(innerPadding)
+            Box(modifier = Modifier.fillMaxSize().padding(innerPadding))
+            {
+                content(innerPadding)
+            }
         }
     )
 }
