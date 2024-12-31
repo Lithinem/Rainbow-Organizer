@@ -38,49 +38,6 @@ import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import kotlin.math.abs
 
-@Composable
-fun LandingPageContent(modifier: Modifier = Modifier) {
-    // Beispiel-Liste mit Textwerten
-    val textList = listOf(
-        "Willkommen bei unserer App!",
-        "Wir freuen uns, dass du hier bist.",
-        "Entdecke tolle Funktionen und mehr.",
-        "Starte noch heute mit uns.",
-        "Willkommen bei unserer App!",
-        "Wir freuen uns, dass du hier bist.",
-        "Entdecke tolle Funktionen und mehr.",
-        "Starte noch heute mit uns.",
-        "Willkommen bei unserer App!",
-        "Wir freuen uns, dass du hier bist.",
-        "Entdecke tolle Funktionen und mehr.",
-        "Starte noch heute mit uns.",
-        "Willkommen bei unserer App!",
-        "Wir freuen uns, dass du hier bist.",
-        "Entdecke tolle Funktionen und mehr.",
-        "Starte noch heute mit uns.",
-        "Willkommen bei unserer App!",
-        "Wir freuen uns, dass du hier bist.",
-        "Entdecke tolle Funktionen und mehr.",
-        "Starte noch heute mit uns.",
-        "Willkommen bei unserer App!",
-        "Wir freuen uns, dass du hier bist.",
-        "Entdecke tolle Funktionen und mehr.",
-        "Starte noch heute mit uns.",
-        "Bleibe immer auf dem neuesten Stand."
-    )
-
-    LazyColumn(modifier = modifier) {
-        items(textList.size) { index ->
-            val text = textList[index]
-            Text(
-                text = text,
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(16.dp)
-            )
-        }
-    }
-}
-
 
 @Composable
 fun AlphabeticScrollBar() {
