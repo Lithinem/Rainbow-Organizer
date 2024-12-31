@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -43,50 +44,6 @@ import kotlinx.coroutines.launch
 import kotlin.math.abs
 
 @Composable
-fun LandingPageContent(modifier: Modifier = Modifier) {
-    // Beispiel-Liste mit Textwerten
-    val textList = listOf(
-        "Willkommen bei unserer App!",
-        "Wir freuen uns, dass du hier bist.",
-        "Entdecke tolle Funktionen und mehr.",
-        "Starte noch heute mit uns.",
-        "Willkommen bei unserer App!",
-        "Wir freuen uns, dass du hier bist.",
-        "Entdecke tolle Funktionen und mehr.",
-        "Starte noch heute mit uns.",
-        "Willkommen bei unserer App!",
-        "Wir freuen uns, dass du hier bist.",
-        "Entdecke tolle Funktionen und mehr.",
-        "Starte noch heute mit uns.",
-        "Willkommen bei unserer App!",
-        "Wir freuen uns, dass du hier bist.",
-        "Entdecke tolle Funktionen und mehr.",
-        "Starte noch heute mit uns.",
-        "Willkommen bei unserer App!",
-        "Wir freuen uns, dass du hier bist.",
-        "Entdecke tolle Funktionen und mehr.",
-        "Starte noch heute mit uns.",
-        "Willkommen bei unserer App!",
-        "Wir freuen uns, dass du hier bist.",
-        "Entdecke tolle Funktionen und mehr.",
-        "Starte noch heute mit uns.",
-        "Bleibe immer auf dem neuesten Stand."
-    )
-
-    LazyColumn(modifier = modifier) {
-        items(textList.size) { index ->
-            val text = textList[index]
-            Text(
-                text = text,
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(16.dp)
-            )
-        }
-    }
-}
-
-
-@Composable
 fun DetailsScreen(item: String?) {
     Box(
         contentAlignment = Alignment.Center,
@@ -103,8 +60,7 @@ fun DetailsScreen(item: String?) {
 // Derived from https://stackoverflow.com/questions/71657480/alphabetical-scrollbar-in-jetpack-compose
 @Composable
 fun AlphabeticScrollBar(navController: NavHostController) {
-    val items =
-        remember { LoremIpsum().values.first().split(" ").plus("ZETA").sortedBy { it.lowercase() } }
+    val items = remember { LoremIpsum().values.first().split(" ").plus("ZETA").sortedBy { it.lowercase() } }
     val headers = remember { items.map { it.first().uppercase() }.toSet().toList() }
     val listState = rememberLazyListState()
     val scope = rememberCoroutineScope()
@@ -187,16 +143,23 @@ fun AlphabeticScrollBar(navController: NavHostController) {
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
-                    .size(width = 8.dp, height = 8.dp)
-                    .background(Color(0xAA000000)) // Semi-transparent background
+                    .fillMaxSize()
             ) {
-                Text(
-                    text = overlayLetter.value,
-                    style = MaterialTheme.typography.displayLarge.copy(
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .size(100.dp) // Größe des Overlays
+                        .background(Color.DarkGray, shape = CircleShape) // Inner Circle
+                ) {
+                    Text(
+                        text = overlayLetter.value,
+                        style = MaterialTheme.typography.displayMedium.copy(
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold
+                        ),
+                        modifier = Modifier.padding(8.dp)
                     )
-                )
+                }
             }
         }
 
