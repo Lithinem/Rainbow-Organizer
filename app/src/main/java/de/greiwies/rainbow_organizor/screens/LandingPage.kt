@@ -1,5 +1,7 @@
 package de.greiwies.rainbow_organizor.screens
 
+import android.app.Fragment
+import android.view.View
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -39,10 +41,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import de.greiwies.rainbow_organizor.LocalNavController
+import de.greiwies.rainbow_organizor.RainbowViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.abs
 
+//TODO: Delete
 @Composable
 fun DetailsScreen(item: String?) {
     Box(
@@ -56,11 +62,20 @@ fun DetailsScreen(item: String?) {
     }
 }
 
+@Composable
+fun LandingPage(viewModel: RainbowViewModel)
+{
+    val items = remember { LoremIpsum().values.first().split(" ").plus("ZETA").sortedBy { it.lowercase() } }
+    AlphabeticScrollBar(viewModel, items)
+}
+
 
 // Derived from https://stackoverflow.com/questions/71657480/alphabetical-scrollbar-in-jetpack-compose
 @Composable
-fun AlphabeticScrollBar(navController: NavHostController) {
-    val items = remember { LoremIpsum().values.first().split(" ").plus("ZETA").sortedBy { it.lowercase() } }
+fun AlphabeticScrollBar(viewModel: RainbowViewModel, items: List<String>) {
+    val navController = LocalNavController.current
+        ?: throw IllegalStateException("NavController not found in the CompositionLocal")
+
     val headers = remember { items.map { it.first().uppercase() }.toSet().toList() }
     val listState = rememberLazyListState()
     val scope = rememberCoroutineScope()

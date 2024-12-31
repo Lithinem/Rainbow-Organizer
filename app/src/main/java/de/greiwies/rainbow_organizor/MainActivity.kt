@@ -7,10 +7,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -18,6 +21,7 @@ import de.greiwies.rainbow_organizor.components.MainFabWithGrayscaledBackgroundO
 import de.greiwies.rainbow_organizor.components.RainbowScaffold
 import de.greiwies.rainbow_organizor.screens.AlphabeticScrollBar
 import de.greiwies.rainbow_organizor.screens.DetailsScreen
+import de.greiwies.rainbow_organizor.screens.LandingPage
 import de.greiwies.rainbow_organizor.ui.theme.RainbowOrganizorTheme
 
 class MainActivity : ComponentActivity() {
@@ -57,19 +61,22 @@ fun LocalDemoArea(viewModel: RainbowViewModel){
 @Composable
 fun AppNavigation(viewModel: RainbowViewModel) {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "list") {
-        composable("list") {
-            MainFabWithGrayscaledBackgroundOverlay()
-            RainbowScaffold(viewModel, R.integer.TopBarCodeLandingPage){ paddingValues ->
-                //Text("Hallo Welt", Modifier.padding(paddingValues))
-                //LandingPageContent(Modifier.padding(paddingValues))
-                AlphabeticScrollBar(navController)
+
+    CompositionLocalProvider(LocalNavController provides navController) {
+        NavHost(navController = navController, startDestination = "list") {
+            composable("list") {
+                MainFabWithGrayscaledBackgroundOverlay()
+                RainbowScaffold(viewModel, R.integer.TopBarCodeLandingPage){ paddingValues ->
+                    //Text("Hallo Welt", Modifier.padding(paddingValues))
+                    //LandingPageContent(Modifier.padding(paddingValues))
+                    LandingPage(viewModel)
+                }
             }
-        }
-        composable("details/{item}") { backStackEntry ->
-            val item = backStackEntry.arguments?.getString("item")
-            RainbowScaffold(viewModel, 0) {
-                DetailsScreen(item)
+            composable("details/{item}") { backStackEntry ->
+                val item = backStackEntry.arguments?.getString("item")
+                RainbowScaffold(viewModel, 0) {
+                    DetailsScreen(item)
+                }
             }
         }
     }
