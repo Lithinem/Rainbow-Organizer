@@ -1,6 +1,7 @@
 package de.greiwies.rainbow_organizor.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -123,7 +124,11 @@ fun AlphabeticScrollBar(navController: NavHostController){
             items(items.size) { index ->
                 Text(
                     text = items.get(index),
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier
+                        .clickable {
+                            navController.navigate("details/${items[index]}")
+                        }
                 )
                 Spacer(modifier = Modifier.padding(10.dp))
             }
