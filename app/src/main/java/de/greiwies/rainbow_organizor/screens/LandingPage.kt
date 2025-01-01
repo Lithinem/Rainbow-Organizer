@@ -48,6 +48,7 @@ import androidx.compose.ui.unit.dp
 import de.greiwies.rainbow_organizor.LocalNavController
 import de.greiwies.rainbow_organizor.RainbowViewModel
 import de.greiwies.rainbow_organizor.exampleData
+import de.greiwies.rainbow_organizor.ui.theme.OverlayBackgroundGrayHalfTransparent
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.abs
@@ -204,14 +205,13 @@ private fun ContentElement(item: String){
             Spacer(modifier = Modifier.padding(5.dp))
 
             Row {
-                Text("Placeholder Picture")
                 Image(
                     painter = painterResource(id = exampleData.get(0).imageResId),
                     contentDescription = null,
                     modifier = Modifier
-                        .width(50.dp)
-                        .height(80.dp),
-                    contentScale = ContentScale.Crop
+                        .width(140.dp)
+                        .padding(end = 5.dp),
+                    contentScale = ContentScale.Fit
                 )
                 Column {
                     Text(
@@ -229,10 +229,10 @@ private fun ContentElement(item: String){
                 }
             }
 
-            Spacer(modifier = Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(5.dp))
 
             //Visible Separator
-            Box(modifier = Modifier.background(Color.Red).fillMaxWidth().height(4.dp))
+            Box(modifier = Modifier.background(OverlayBackgroundGrayHalfTransparent).fillMaxWidth().height(4.dp))
         }
     }
 }
