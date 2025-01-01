@@ -1,5 +1,6 @@
 package de.greiwies.rainbow_organizor
 
+import androidx.annotation.DrawableRes
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -25,3 +26,19 @@ class RainbowViewModel : ViewModel() {
 val LocalNavController = staticCompositionLocalOf<NavHostController?> {
     null // Initialer Wert, falls nicht gesetzt
 }
+
+data class DataEntry(
+    @DrawableRes val imageResId: Int,
+    val textValues: List<String>
+)
+
+val exampleData = listOf(
+    DataEntry(
+        imageResId = R.drawable.naruto_42,
+        textValues = listOf("Text 1", "Text 2", "Text 3")
+    ),
+    DataEntry(
+        imageResId = R.drawable.naruto_42,
+        textValues = listOf("Text A", "Text B")
+    )
+)

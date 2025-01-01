@@ -4,6 +4,7 @@ import android.graphics.Picture
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -19,6 +20,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
@@ -36,13 +38,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.boundsInParent
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import de.greiwies.rainbow_organizor.LocalNavController
 import de.greiwies.rainbow_organizor.RainbowViewModel
+import de.greiwies.rainbow_organizor.exampleData
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.abs
@@ -200,6 +205,14 @@ private fun ContentElement(item: String){
 
             Row {
                 Text("Placeholder Picture")
+                Image(
+                    painter = painterResource(id = exampleData.get(0).imageResId),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .width(50.dp)
+                        .height(80.dp),
+                    contentScale = ContentScale.Crop
+                )
                 Column {
                     Text(
                         text = item,
