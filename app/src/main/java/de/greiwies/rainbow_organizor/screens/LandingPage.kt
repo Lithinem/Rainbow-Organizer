@@ -209,7 +209,8 @@ private fun ContentElement(item: String){
                     painter = painterResource(id = exampleData.get(0).imageResId),
                     contentDescription = null,
                     modifier = Modifier
-                        .width(140.dp)
+                        //TODO: Make size of picture editable (Resource File does not work)
+                        .width(120.dp)
                         .padding(end = 5.dp),
                     contentScale = ContentScale.Fit
                 )
