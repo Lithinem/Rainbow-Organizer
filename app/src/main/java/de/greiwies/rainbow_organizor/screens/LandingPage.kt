@@ -197,9 +197,11 @@ private fun ContentElement(item: String){
         ?: throw IllegalStateException("NavController not found in the CompositionLocal")
 
 
-    Box(modifier = Modifier.clickable {
-        navController.navigate("details/2")
-    }.fillMaxWidth())
+    Box(modifier = Modifier
+        .clickable {
+            navController.navigate("details/2")
+        }
+        .fillMaxWidth())
     {
         Column {
             Spacer(modifier = Modifier.padding(5.dp))
@@ -214,15 +216,17 @@ private fun ContentElement(item: String){
                         .padding(end = 5.dp),
                     contentScale = ContentScale.Fit
                 )
-                Column {
+                Column (modifier = Modifier.padding(10.dp).weight(1F), horizontalAlignment = Alignment.End){
                     Text(
                         text = item,
                         style = MaterialTheme.typography.headlineLarge
                     )
+                    Spacer(modifier = Modifier.size(10.dp))
                     Text(
                         text = item,
                         style = MaterialTheme.typography.bodyMedium
                     )
+                    Spacer(modifier = Modifier.size(10.dp))
                     Text(
                         text = item,
                         style = MaterialTheme.typography.bodyMedium
@@ -233,7 +237,10 @@ private fun ContentElement(item: String){
             Spacer(modifier = Modifier.padding(5.dp))
 
             //Visible Separator
-            Box(modifier = Modifier.background(OverlayBackgroundGrayHalfTransparent).fillMaxWidth().height(4.dp))
+            Box(modifier = Modifier
+                .background(OverlayBackgroundGrayHalfTransparent)
+                .fillMaxWidth()
+                .height(4.dp))
         }
     }
 }
