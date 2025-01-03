@@ -16,42 +16,44 @@ class RainbowViewModel : ViewModel() {
     //Demodaten KI-Generiert
     val demoData = listOf(
         // Naruto-Serie: Teile 1-46
-        (1..46).map { volume ->
-            DataEntry(
-                imageResId = R.drawable::class.java.getField("naruto_volume_$volume").getInt(null),
-                Series = "Naruto",
-                Title = "Naruto $volume",
-                Languages = listOf("Englisch", "Japanisch"),
-                Summary = "Lorem Ipsum",
-                Pages = 150 + (volume % 3) * 10, // Beispielseitenzahl variiert leicht
-                Volume = volume,
-                Volumes = 46
-            )
-        },
+        (1..46)
+            .filter { it != 39 } // Filtert Volume 39 heraus
+            .map { volume ->
+                DataEntry(
+                    imageResId = R.drawable::class.java.getField("naruto_volume_$volume")
+                        .getInt(null),
+                    Series = "Naruto",
+                    Title = "Naruto $volume",
+                    Languages = listOf("Englisch", "Japanisch"),
+                    Summary = "Begleite Naruto Uzumaki, einen jungen Ninja mit großen Träumen, auf seinem Weg, Hokage, der stärkste Ninja seines Dorfes, zu werden. In einer Welt voller Intrigen, Freundschaft und erbitterter Kämpfe muss er seine innere Stärke finden und das Geheimnis des Fuchsgeistes in sich enthüllen.",
+                    Pages = 150 + (volume % 3) * 10, // Beispielseitenzahl variiert leicht
+                    Volume = volume
+                )
+            },
         // Neon Genesis Evangelion: Teile 1-4
         (1..4).map { volume ->
             DataEntry(
-                imageResId = R.drawable::class.java.getField("evangelion_volume_$volume").getInt(null),
+                imageResId = R.drawable::class.java.getField("evangelion_volume_$volume")
+                    .getInt(null),
                 Series = "Neon Genesis Evangelion",
                 Title = "Evangelion $volume",
                 Languages = listOf("Englisch", "Japanisch"),
-                Summary = "Lorem Ipsum",
+                Summary = "In einer düsteren Zukunft kämpft die Menschheit gegen gigantische Wesen, die als Engel bekannt sind. Die einzige Hoffnung liegt in gigantischen Mechas, den Evangelions, die von mutigen Jugendlichen wie Shinji Ikari gesteuert werden. Eine packende Mischung aus Action, Philosophie und psychologischer Tiefe.",
                 Pages = 180 + (volume % 2) * 15, // Beispielseitenzahl
-                Volume = volume,
-                Volumes = 4
+                Volume = volume
             )
         },
         // Noragami: Teile 1-8, 11-12, 14, 18, 26, 27
         listOf(1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 14, 18, 26, 27).map { volume ->
             DataEntry(
-                imageResId = R.drawable::class.java.getField("noragami_volume_$volume").getInt(null),
+                imageResId = R.drawable::class.java.getField("noragami_volume_$volume")
+                    .getInt(null),
                 Series = "Noragami",
                 Title = "Noragami $volume",
                 Languages = listOf("Englisch", "Japanisch"),
-                Summary = "Lorem Ipsum",
+                Summary = "Yato, ein pleitegegangener Gott ohne Tempel, nimmt jede Aufgabe an, um sein Leben als Gott zu verbessern – von der Suche nach verlorenen Katzen bis zum Bekämpfen gefährlicher Geister. Mit Witz, Action und einer Prise Drama taucht der Leser in eine Welt ein, in der Götter und Sterbliche Seite an Seite existieren.",
                 Pages = 160 + (volume % 4) * 10, // Beispielseitenzahl
-                Volume = volume,
-                Volumes = 27
+                Volume = volume
             )
         },
         // No Guns Life: Teil 1
@@ -61,10 +63,9 @@ class RainbowViewModel : ViewModel() {
                 Series = "No Guns Life",
                 Title = "No Guns Life 1",
                 Languages = listOf("Englisch", "Japanisch"),
-                Summary = "Lorem Ipsum",
+                Summary = "Juzo Inui, ein Ex-Soldat mit einem Revolver als Kopf, arbeitet in einer Welt, in der Mensch-Maschinen-Hybriden zur Normalität gehören, als Problemlöser. Seine Mission: Ungerechtigkeiten aufdecken und die Geheimnisse seiner mysteriösen Vergangenheit entschlüsseln, während er sich gegen dunkle Mächte stellt.",
                 Pages = 200, // Beispielseitenzahl
-                Volume = 1,
-                Volumes = 1
+                Volume = 1
             )
         )
     )
@@ -76,7 +77,7 @@ class RainbowViewModel : ViewModel() {
         .map { (series, entries) ->
             SeriesSummary(
                 series = series,
-                totalVolumes = entries.sumOf { it.Volumes },
+                totalVolumes = entries.count(),
                 totalPages = entries.sumOf { it.Pages },
                 imageResId = entries.get(0).imageResId
             )
@@ -101,8 +102,7 @@ data class DataEntry(
     val Languages: List<String>,
     val Summary: String,
     val Pages: Int,
-    val Volume: Int,
-    val Volumes: Int
+    val Volume: Int
 )
 
 data class SeriesSummary(
