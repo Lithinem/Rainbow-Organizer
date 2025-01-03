@@ -63,14 +63,14 @@ fun AppNavigation(viewModel: RainbowViewModel) {
         NavHost(navController = navController, startDestination = "landing_page") {
             composable("landing_page") {
                 MainFabWithGrayscaledBackgroundOverlay()
-                RainbowScaffold(viewModel, R.integer.TopBarCodeLandingPage){ paddingValues ->
+                RainbowScaffold(viewModel, R.integer.TopBarCode_LandingPage){ paddingValues ->
                     //Text("Hallo Welt", Modifier.padding(paddingValues))
                     //LandingPageContent(Modifier.padding(paddingValues))
                     LandingPage(viewModel)
                 }
             }
             composable("details") { backStackEntry ->
-                RainbowScaffold(viewModel, 0) {
+                RainbowScaffold(viewModel, R.integer.TopBarCode_SeriesPage) {
                     DetailsScreen(viewModel)
                 }
             }

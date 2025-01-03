@@ -1,6 +1,7 @@
 package de.greiwies.rainbow_organizor.screens
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -14,15 +15,16 @@ import de.greiwies.rainbow_organizor.components.RainbowScaffold
 @Composable
 fun DetailsScreen(viewModel: RainbowViewModel) {
 
+        Column {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                Text(
+                    text = "Selected Item: ${viewModel.selectedSeriesId}",
+                    style = MaterialTheme.typography.headlineMedium
+                )
+            }
+        }
 
-
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Text(
-            text = "Selected Item: ${viewModel.selectedSeriesId}",
-            style = MaterialTheme.typography.headlineMedium
-        )
-    }
 }
