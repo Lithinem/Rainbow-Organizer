@@ -200,7 +200,7 @@ private fun ContentElement(item: SeriesSummary, index:Int, viewModel: RainbowVie
             Row {
                 Image(
                     painter = painterResource(id = item.imageResId),
-                    contentDescription = null,
+                    contentDescription = "Manga Image",
                     modifier = Modifier
                         //TODO: Make size of picture editable (Resource File does not work)
                         .width(120.dp)

@@ -1,14 +1,18 @@
 package de.greiwies.rainbow_organizor.components
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -20,8 +24,12 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import de.greiwies.rainbow_organizor.LocalNavController
 import de.greiwies.rainbow_organizor.R
 import de.greiwies.rainbow_organizor.RainbowViewModel
 import de.greiwies.rainbow_organizor.ui.theme.MainColorMain
@@ -40,7 +48,9 @@ fun RainbowScaffold(viewModel: RainbowViewModel, topBarCode: Int, content: @Comp
 
         },
         content = { innerPadding ->
-            Box(modifier = Modifier.fillMaxSize().padding(innerPadding))
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding))
             {
                 content(innerPadding)
             }
@@ -89,15 +99,18 @@ fun TopAppBarLandingPage(){
 fun TopAppBarSeriesPage(){
     val context = LocalContext.current
     val errorText = stringResource(R.string.function_out_of_scope_error)
+    val navController = LocalNavController.current
+        ?: throw IllegalStateException("NavController not found in the CompositionLocal")
+
 
     RainbowOrganizorTopBarTheme {
         TopAppBar(
             title = { Text(stringResource(id = R.string.app_name)) },
             navigationIcon = {
-                IconButton(onClick = { /* TODO: Implement menu (not Part of Project) */
-                    Toast.makeText(context, errorText,Toast.LENGTH_LONG).show()
+                IconButton(onClick = {
+                    navController.popBackStack()
                 }) {
-                    Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = "Menu")
+                    Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = "Back")
                 }
             },
             actions = {
@@ -107,9 +120,20 @@ fun TopAppBarSeriesPage(){
                     Text("?", style = MaterialTheme.typography.labelLarge)
                 }
                 IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
+                    Toast.makeText(context, errorText, Toast.LENGTH_LONG).show()
+                }) {
+                    Image(
+                        painter = painterResource(id = R.drawable.select_all),
+                        contentDescription = "Select all Button",
+                        modifier = Modifier
+                            .size(25.dp),
+                        contentScale = ContentScale.Fit
+                    )
+                }
+                IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
                     Toast.makeText(context, errorText,Toast.LENGTH_LONG).show()
                 }) {
-                    Icon(Icons.Default.Search, contentDescription = "Search")
+                    Icon(Icons.Default.MoreVert, contentDescription = "More")
                 }
             },
             colors = TopAppBarDefaults.topAppBarColors(
