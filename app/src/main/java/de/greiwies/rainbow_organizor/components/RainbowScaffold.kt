@@ -130,11 +130,12 @@ fun TopAppBarSeriesPage(){
                         contentScale = ContentScale.Fit
                     )
                 }
-                IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
+                // TODO: Implement when necessary. For when '?' is needed rethink layout
+                /* IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
                     Toast.makeText(context, errorText,Toast.LENGTH_LONG).show()
                 }) {
                     Icon(Icons.Default.MoreVert, contentDescription = "More")
-                }
+                } */
             },
             colors = TopAppBarDefaults.topAppBarColors(
                 //containerColor = MaterialTheme.colorScheme.primaryContainer
