@@ -216,7 +216,12 @@ private fun ContentElement(item: String){
                         .padding(end = 5.dp),
                     contentScale = ContentScale.Fit
                 )
-                Column (modifier = Modifier.padding(10.dp).weight(1F), horizontalAlignment = Alignment.End){
+                Column(
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .weight(1F),
+                    horizontalAlignment = Alignment.End
+                ) {
                     Text(
                         text = item,
                         style = MaterialTheme.typography.headlineLarge
