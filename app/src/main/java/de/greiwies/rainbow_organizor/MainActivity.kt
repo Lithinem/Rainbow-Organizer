@@ -69,10 +69,9 @@ fun AppNavigation(viewModel: RainbowViewModel) {
                     LandingPage(viewModel)
                 }
             }
-            composable("details/{item}") { backStackEntry ->
-                val item = backStackEntry.arguments?.getString("item")
+            composable("details") { backStackEntry ->
                 RainbowScaffold(viewModel, 0) {
-                    DetailsScreen(item)
+                    DetailsScreen(viewModel)
                 }
             }
         }

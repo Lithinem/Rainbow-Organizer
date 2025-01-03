@@ -45,6 +45,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import de.greiwies.rainbow_organizor.LocalNavController
 import de.greiwies.rainbow_organizor.RainbowViewModel
 import de.greiwies.rainbow_organizor.SeriesSummary
@@ -52,20 +53,6 @@ import de.greiwies.rainbow_organizor.ui.theme.OverlayBackgroundGrayHalfTranspare
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.abs
-
-//TODO: Delete
-@Composable
-fun DetailsScreen(item: String?) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Text(
-            text = "Selected Item: ${item ?: "Unknown"}",
-            style = MaterialTheme.typography.headlineMedium
-        )
-    }
-}
 
 @Composable
 fun LandingPage(viewModel: RainbowViewModel)
@@ -114,7 +101,7 @@ private fun LandingPageContent(viewModel: RainbowViewModel) {
                 modifier = Modifier.weight(1f)
             ) {
                 items(bookSeries.size) { index ->
-                    ContentElement(bookSeries[index])
+                    ContentElement(bookSeries[index], index, viewModel)
                     //TODO: Delete
                     //Text(
                     //    text = items[index],
@@ -195,14 +182,15 @@ private fun LandingPageContent(viewModel: RainbowViewModel) {
 }
 
 @Composable
-private fun ContentElement(item: SeriesSummary){
+private fun ContentElement(item: SeriesSummary, index:Int, viewModel: RainbowViewModel){
     val navController = LocalNavController.current
         ?: throw IllegalStateException("NavController not found in the CompositionLocal")
 
 
     Box(modifier = Modifier
         .clickable {
-            navController.navigate("details/2")
+            viewModel.selectedSeriesId = index
+            navController.navigate("details")
         }
         .fillMaxWidth())
     {

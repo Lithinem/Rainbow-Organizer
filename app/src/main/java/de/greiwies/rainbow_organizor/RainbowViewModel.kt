@@ -9,9 +9,11 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
+
 class RainbowViewModel : ViewModel() {
     private val _eventFlow = MutableSharedFlow<String>() // Shared Flow für Events
     val demoEventFLow = _eventFlow.asSharedFlow()
+    var selectedSeriesId = 0
 
     //Demodaten KI-Generiert
     val demoData = listOf(
