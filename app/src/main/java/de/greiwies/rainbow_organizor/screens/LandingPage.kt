@@ -42,6 +42,7 @@ import androidx.compose.ui.layout.boundsInParent
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import de.greiwies.rainbow_organizor.LocalNavController
@@ -226,17 +227,20 @@ private fun ContentElement(item: SeriesSummary){
                 ) {
                     Text(
                         text = item.series,
-                        style = MaterialTheme.typography.headlineLarge
+                        style = MaterialTheme.typography.headlineLarge,
+                        textAlign = TextAlign.End
                     )
                     Spacer(modifier = Modifier.size(30.dp))
                     Text(
                         text = "Insgesamt",
-                        style = MaterialTheme.typography.bodyLarge
+                        style = MaterialTheme.typography.bodyLarge,
+                        textAlign = TextAlign.End
                     )
                     Spacer(modifier = Modifier.size(10.dp))
                     Text(
                         text = item.totalPages.toString() + " Seiten",
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodyMedium,
+                        textAlign = TextAlign.End
                     )
                     Spacer(modifier = Modifier.size(10.dp))
                     Text(
@@ -246,7 +250,8 @@ private fun ContentElement(item: SeriesSummary){
                                 else
                                     item.totalVolumes.toString() + " Bände"
                                 ),
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodyMedium,
+                        textAlign = TextAlign.End
                     )
                 }
             }
