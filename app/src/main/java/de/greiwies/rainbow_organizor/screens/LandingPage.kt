@@ -1,6 +1,5 @@
 package de.greiwies.rainbow_organizor.screens
 
-import android.graphics.Picture
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -77,8 +76,8 @@ fun LandingPage(viewModel: RainbowViewModel)
 
 // Derived from https://stackoverflow.com/questions/71657480/alphabetical-scrollbar-in-jetpack-compose
 @Composable
-private fun LandingPageContent(viewModel: RainbowViewModel, items: List<String>) {
-    val headers = remember { items.map { it.first().uppercase() }.toSet().toList() }
+private fun LandingPageContent(viewModel: RainbowViewModel, bookSeries: List<String>) {
+    val headers = remember { bookSeries.map { it.first().uppercase() }.toSet().toList() }
     val listState = rememberLazyListState()
     val scope = rememberCoroutineScope()
 
@@ -98,7 +97,7 @@ private fun LandingPageContent(viewModel: RainbowViewModel, items: List<String>)
         overlayLetter.value = headers[selectedHeaderIndex]
         overlayVisible = true
         val selectedItemIndex =
-            items.indexOfFirst { it.first().uppercase() == headers[selectedHeaderIndex] }
+            bookSeries.indexOfFirst { it.first().uppercase() == headers[selectedHeaderIndex] }
         scope.launch {
             listState.scrollToItem(selectedItemIndex)
         }
@@ -111,8 +110,8 @@ private fun LandingPageContent(viewModel: RainbowViewModel, items: List<String>)
                 state = listState,
                 modifier = Modifier.weight(1f)
             ) {
-                items(items.size) { index ->
-                    ContentElement(items[index])
+                items(bookSeries.size) { index ->
+                    ContentElement(bookSeries[index])
                     //Text(
                     //    text = items[index],
                     //    style = MaterialTheme.typography.bodyMedium,
