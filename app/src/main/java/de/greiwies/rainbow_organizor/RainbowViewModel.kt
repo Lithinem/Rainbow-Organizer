@@ -13,54 +13,62 @@ class RainbowViewModel : ViewModel() {
     private val _eventFlow = MutableSharedFlow<String>() // Shared Flow für Events
     val demoEventFLow = _eventFlow.asSharedFlow()
 
+    //Demodaten KI-Generiert
     val demoData = listOf(
+        // Naruto-Serie: Teile 1-46
+        (1..46).map { volume ->
+            DataEntry(
+                imageResId = R.drawable::class.java.getField("naruto_volume_$volume").getInt(null),
+                Series = "Naruto",
+                Title = "Naruto $volume",
+                Languages = listOf("Englisch", "Japanisch"),
+                Summary = "Lorem Ipsum",
+                Pages = 150 + (volume % 3) * 10, // Beispielseitenzahl variiert leicht
+                Volume = volume,
+                Volumes = 46
+            )
+        },
+        // Neon Genesis Evangelion: Teile 1-4
+        (1..4).map { volume ->
+            DataEntry(
+                imageResId = R.drawable::class.java.getField("evangelion_volume_$volume").getInt(null),
+                Series = "Neon Genesis Evangelion",
+                Title = "Evangelion $volume",
+                Languages = listOf("Englisch", "Japanisch"),
+                Summary = "Lorem Ipsum",
+                Pages = 180 + (volume % 2) * 15, // Beispielseitenzahl
+                Volume = volume,
+                Volumes = 4
+            )
+        },
+        // Noragami: Teile 1-8, 11-12, 14, 18, 26, 27
+        listOf(1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 14, 18, 26, 27).map { volume ->
+            DataEntry(
+                imageResId = R.drawable::class.java.getField("noragami_volume_$volume").getInt(null),
+                Series = "Noragami",
+                Title = "Noragami $volume",
+                Languages = listOf("Englisch", "Japanisch"),
+                Summary = "Lorem Ipsum",
+                Pages = 160 + (volume % 4) * 10, // Beispielseitenzahl
+                Volume = volume,
+                Volumes = 27
+            )
+        },
+        // No Guns Life: Teil 1
         listOf(
             DataEntry(
-                imageResId = R.drawable.naruto_42,
-                Series = "Naruto",
-                Title = "Naruto 1",
+                imageResId = R.drawable::class.java.getField("nogunslife_volume_1").getInt(null),
+                Series = "No Guns Life",
+                Title = "No Guns Life 1",
                 Languages = listOf("Englisch", "Japanisch"),
                 Summary = "Lorem Ipsum",
-                Pages = 150,
+                Pages = 200, // Beispielseitenzahl
                 Volume = 1,
-                Volumes = 100
-
-            ),
-            DataEntry(
-                imageResId = R.drawable.naruto_42,
-                Series = "Naruto",
-                Title = "Naruto 2",
-                Languages = listOf("Englisch", "Japanisch"),
-                Summary = "Lorem Ipsum",
-                Pages = 132,
-                Volume = 2,
-                Volumes = 100
-            ),
-        ),
-        listOf(
-            DataEntry(
-                imageResId = R.drawable.naruto_42,
-                Series = "Noragami",
-                Title = "Noragami 1",
-                Languages = listOf("Englisch", "Japanisch"),
-                Summary = "Lorem Ipsum",
-                Pages = 150,
-                Volume = 1,
-                Volumes = 100
-
-            ),
-            DataEntry(
-                imageResId = R.drawable.naruto_42,
-                Series = "Noragami",
-                Title = "Noragami 2",
-                Languages = listOf("Englisch", "Japanisch"),
-                Summary = "Lorem Ipsum",
-                Pages = 132,
-                Volume = 2,
-                Volumes = 100
-            ),
+                Volumes = 1
+            )
         )
     )
+
 
     val demoSeries = demoData
         .flatten()
@@ -69,11 +77,12 @@ class RainbowViewModel : ViewModel() {
             SeriesSummary(
                 series = series,
                 totalVolumes = entries.sumOf { it.Volumes },
-                totalPages = entries.sumOf { it.Pages }
+                totalPages = entries.sumOf { it.Pages },
+                imageResId = entries.get(0).imageResId
             )
         }
 
-    // Methode, um ein Event zu senden
+    // Method for publishing an event
     fun sendEvent(message: String) {
         viewModelScope.launch {
             _eventFlow.emit(message)
@@ -97,24 +106,8 @@ data class DataEntry(
 )
 
 data class SeriesSummary(
+    @DrawableRes val imageResId: Int,
     val series: String,
     val totalVolumes: Int,
     val totalPages: Int
-)
-
-
-data class OldDataEntry(
-    @DrawableRes val imageResId: Int,
-    val textValues: List<String>
-)
-
-val exampleData = listOf(
-    OldDataEntry(
-        imageResId = R.drawable.naruto_42,
-        textValues = listOf("Text 1", "Text 2", "Text 3")
-    ),
-    OldDataEntry(
-        imageResId = R.drawable.naruto_42,
-        textValues = listOf("Text A", "Text B")
-    )
 )

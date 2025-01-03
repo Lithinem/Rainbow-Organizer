@@ -46,7 +46,7 @@ import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import de.greiwies.rainbow_organizor.LocalNavController
 import de.greiwies.rainbow_organizor.RainbowViewModel
-import de.greiwies.rainbow_organizor.exampleData
+import de.greiwies.rainbow_organizor.SeriesSummary
 import de.greiwies.rainbow_organizor.ui.theme.OverlayBackgroundGrayHalfTransparent
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -70,14 +70,16 @@ fun DetailsScreen(item: String?) {
 fun LandingPage(viewModel: RainbowViewModel)
 {
     val items = remember { LoremIpsum().values.first().split(" ").plus("ZETA").sortedBy { it.lowercase() } }
-    LandingPageContent(viewModel, items)
+    LandingPageContent(viewModel)
 }
 
 
 // Derived from https://stackoverflow.com/questions/71657480/alphabetical-scrollbar-in-jetpack-compose
 @Composable
-private fun LandingPageContent(viewModel: RainbowViewModel, bookSeries: List<String>) {
-    val headers = remember { bookSeries.map { it.first().uppercase() }.toSet().toList() }
+private fun LandingPageContent(viewModel: RainbowViewModel) {
+    val bookSeries = viewModel.demoSeries
+    val headers = remember { bookSeries.map { it.series.first().uppercase() }.toSet().toList() }
+
     val listState = rememberLazyListState()
     val scope = rememberCoroutineScope()
 
@@ -97,7 +99,7 @@ private fun LandingPageContent(viewModel: RainbowViewModel, bookSeries: List<Str
         overlayLetter.value = headers[selectedHeaderIndex]
         overlayVisible = true
         val selectedItemIndex =
-            bookSeries.indexOfFirst { it.first().uppercase() == headers[selectedHeaderIndex] }
+            bookSeries.indexOfFirst { it.series.first().uppercase() == headers[selectedHeaderIndex] }
         scope.launch {
             listState.scrollToItem(selectedItemIndex)
         }
@@ -112,6 +114,7 @@ private fun LandingPageContent(viewModel: RainbowViewModel, bookSeries: List<Str
             ) {
                 items(bookSeries.size) { index ->
                     ContentElement(bookSeries[index])
+                    //TODO: Delete
                     //Text(
                     //    text = items[index],
                     //    style = MaterialTheme.typography.bodyMedium,
@@ -191,7 +194,7 @@ private fun LandingPageContent(viewModel: RainbowViewModel, bookSeries: List<Str
 }
 
 @Composable
-private fun ContentElement(item: String){
+private fun ContentElement(item: SeriesSummary){
     val navController = LocalNavController.current
         ?: throw IllegalStateException("NavController not found in the CompositionLocal")
 
@@ -207,7 +210,7 @@ private fun ContentElement(item: String){
 
             Row {
                 Image(
-                    painter = painterResource(id = exampleData.get(0).imageResId),
+                    painter = painterResource(id = item.imageResId),
                     contentDescription = null,
                     modifier = Modifier
                         //TODO: Make size of picture editable (Resource File does not work)
@@ -222,17 +225,17 @@ private fun ContentElement(item: String){
                     horizontalAlignment = Alignment.End
                 ) {
                     Text(
-                        text = item,
+                        text = item.series,
                         style = MaterialTheme.typography.headlineLarge
                     )
                     Spacer(modifier = Modifier.size(10.dp))
                     Text(
-                        text = item,
+                        text = item.totalPages.toString(),
                         style = MaterialTheme.typography.bodyMedium
                     )
                     Spacer(modifier = Modifier.size(10.dp))
                     Text(
-                        text = item,
+                        text = item.totalVolumes.toString(),
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }
