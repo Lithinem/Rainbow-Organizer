@@ -228,14 +228,24 @@ private fun ContentElement(item: SeriesSummary){
                         text = item.series,
                         style = MaterialTheme.typography.headlineLarge
                     )
+                    Spacer(modifier = Modifier.size(30.dp))
+                    Text(
+                        text = "Insgesamt",
+                        style = MaterialTheme.typography.bodyLarge
+                    )
                     Spacer(modifier = Modifier.size(10.dp))
                     Text(
-                        text = item.totalPages.toString(),
+                        text = item.totalPages.toString() + " Seiten",
                         style = MaterialTheme.typography.bodyMedium
                     )
                     Spacer(modifier = Modifier.size(10.dp))
                     Text(
-                        text = item.totalVolumes.toString(),
+                        text = (
+                                if (item.totalVolumes < 2)
+                                    item.totalVolumes.toString() + " Band"
+                                else
+                                    item.totalVolumes.toString() + " Bände"
+                                ),
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }
