@@ -196,7 +196,7 @@ private fun ContentElement(item: SeriesSummary, index:Int, viewModel: RainbowVie
     Box(modifier = Modifier
         .clickable {
             viewModel.selectedSeriesId = index
-            navController.navigate("details")
+            navController.navigate("series")
         }
         .fillMaxWidth())
     {

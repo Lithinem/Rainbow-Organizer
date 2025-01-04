@@ -69,10 +69,13 @@ fun AppNavigation(viewModel: RainbowViewModel) {
                     LandingPage(viewModel)
                 }
             }
-            composable("details") {
+            composable("series") {
                 RainbowScaffold(viewModel, R.integer.TopBarCode_SeriesPage) {
                     DetailsScreen(viewModel)
                 }
+            }
+            composable("bookDetails") {
+                
             }
         }
     }
