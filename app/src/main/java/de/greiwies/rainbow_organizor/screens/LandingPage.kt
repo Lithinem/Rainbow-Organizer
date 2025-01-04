@@ -40,13 +40,15 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.boundsInParent
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import de.greiwies.rainbow_organizor.LocalNavController
+import de.greiwies.rainbow_organizor.R
 import de.greiwies.rainbow_organizor.RainbowViewModel
 import de.greiwies.rainbow_organizor.SeriesSummary
 import de.greiwies.rainbow_organizor.ui.theme.OverlayBackgroundGrayHalfTransparent
@@ -186,6 +188,10 @@ private fun ContentElement(item: SeriesSummary, index:Int, viewModel: RainbowVie
     val navController = LocalNavController.current
         ?: throw IllegalStateException("NavController not found in the CompositionLocal")
 
+    val context = LocalContext.current
+    val bookCoverSizeInDp = with(LocalDensity.current) {
+        context.resources.getInteger(R.integer.BookCoverSize).dp
+    }
 
     Box(modifier = Modifier
         .clickable {
@@ -202,8 +208,7 @@ private fun ContentElement(item: SeriesSummary, index:Int, viewModel: RainbowVie
                     painter = painterResource(id = item.imageResId),
                     contentDescription = "Manga Image",
                     modifier = Modifier
-                        //TODO: Make size of picture editable (Resource File does not work)
-                        .width(120.dp)
+                        .width(bookCoverSizeInDp)
                         .padding(end = 5.dp),
                     contentScale = ContentScale.Fit
                 )

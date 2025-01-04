@@ -5,4 +5,5 @@
     <integer name="DefaultAnimationDurationMilliseconds">250</integer>
     <integer name="TopBarCode_LandingPage">1</integer>
     <integer name="TopBarCode_SeriesPage">2</integer>
+    <integer name="BookCoverSize">120</integer>
 </resources>
