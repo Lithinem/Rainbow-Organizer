@@ -44,7 +44,7 @@ fun RainbowScaffold(viewModel: RainbowViewModel, topBarCode: Int, content: @Comp
             when {
                 (topBarCode == R.integer.TopBarCode_LandingPage) -> TopAppBarLandingPage()
                 (topBarCode == R.integer.TopBarCode_SeriesPage) ->  TopAppBarSeriesPage()
-                (topBarCode == R.integer.TopBarCode_DetailsPage) -> TopAppBarDetailsPage()
+                (topBarCode == R.integer.TopBarCode_DetailsPage) -> TopAppBarDetailsPage(viewModel)
             }
 
         },
@@ -151,16 +151,16 @@ private fun TopAppBarSeriesPage(){
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun TopAppBarDetailsPage(){
+private fun TopAppBarDetailsPage(viewModel: RainbowViewModel){
     val context = LocalContext.current
     val errorText = stringResource(R.string.function_out_of_scope_error)
     val navController = LocalNavController.current
         ?: throw IllegalStateException("NavController not found in the CompositionLocal")
-
+    val title = viewModel.demoData.get(viewModel.selectedSeriesId).get(viewModel.selectedBookId).Title
 
     RainbowOrganizorTopBarTheme {
         TopAppBar(
-            title = { Text(stringResource(id = R.string.app_name)) },
+            title = { Text(title) },
             navigationIcon = {
                 IconButton(onClick = {
                     navController.popBackStack()

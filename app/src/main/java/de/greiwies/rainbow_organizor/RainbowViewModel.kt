@@ -39,7 +39,7 @@ class RainbowViewModel : ViewModel() {
                 imageResId = R.drawable::class.java.getField("evangelion_volume_$volume")
                     .getInt(null),
                 Series = "Neon Genesis Evangelion",
-                Title = "Evangelion $volume",
+                Title = "Neon Genesis Evangelion $volume",
                 Languages = listOf("Englisch", "Japanisch"),
                 Summary = "In einer düsteren Zukunft kämpft die Menschheit gegen gigantische Wesen, die als Engel bekannt sind. Die einzige Hoffnung liegt in gigantischen Mechas, den Evangelions, die von mutigen Jugendlichen wie Shinji Ikari gesteuert werden. Eine packende Mischung aus Action, Philosophie und psychologischer Tiefe.",
                 Pages = 180 + (volume % 2) * 15, // Beispielseitenzahl
