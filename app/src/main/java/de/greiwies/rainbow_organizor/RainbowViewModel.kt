@@ -14,6 +14,7 @@ class RainbowViewModel : ViewModel() {
     private val _eventFlow = MutableSharedFlow<String>() // Shared Flow für Events
     val demoEventFLow = _eventFlow.asSharedFlow()
     var selectedSeriesId = 0
+    var selectedBookId = 0
 
     //Demodaten KI-Generiert
     val demoData = listOf(

@@ -5,6 +5,7 @@
     <integer name="DefaultAnimationDurationMilliseconds">250</integer>
     <integer name="TopBarCode_LandingPage">1</integer>
     <integer name="TopBarCode_SeriesPage">2</integer>
+    <integer name="TopBarCode_DetailsPage">3</integer>
     <integer name="BookCoverSize">120</integer>
     <integer name="BookCoverAdditionalTileEnlargement">10</integer>
     <integer name="OuterCornerClip">16</integer>

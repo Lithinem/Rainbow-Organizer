@@ -44,6 +44,7 @@ fun RainbowScaffold(viewModel: RainbowViewModel, topBarCode: Int, content: @Comp
             when {
                 (topBarCode == R.integer.TopBarCode_LandingPage) -> TopAppBarLandingPage()
                 (topBarCode == R.integer.TopBarCode_SeriesPage) ->  TopAppBarSeriesPage()
+                (topBarCode == R.integer.TopBarCode_DetailsPage) -> TopAppBarDetailsPage()
             }
 
         },
@@ -60,7 +61,7 @@ fun RainbowScaffold(viewModel: RainbowViewModel, topBarCode: Int, content: @Comp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopAppBarLandingPage(){
+private fun TopAppBarLandingPage(){
     val context = LocalContext.current
     val errorText = stringResource(R.string.function_out_of_scope_error)
 
@@ -96,7 +97,7 @@ fun TopAppBarLandingPage(){
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopAppBarSeriesPage(){
+private fun TopAppBarSeriesPage(){
     val context = LocalContext.current
     val errorText = stringResource(R.string.function_out_of_scope_error)
     val navController = LocalNavController.current
@@ -139,6 +140,40 @@ fun TopAppBarSeriesPage(){
                 }) {
                     Icon(Icons.Default.MoreVert, contentDescription = "More")
                 } */
+            },
+            colors = TopAppBarDefaults.topAppBarColors(
+                //containerColor = MaterialTheme.colorScheme.primaryContainer
+                containerColor = MainColorMain
+            )
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun TopAppBarDetailsPage(){
+    val context = LocalContext.current
+    val errorText = stringResource(R.string.function_out_of_scope_error)
+    val navController = LocalNavController.current
+        ?: throw IllegalStateException("NavController not found in the CompositionLocal")
+
+
+    RainbowOrganizorTopBarTheme {
+        TopAppBar(
+            title = { Text(stringResource(id = R.string.app_name)) },
+            navigationIcon = {
+                IconButton(onClick = {
+                    navController.popBackStack()
+                }) {
+                    Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = "Back")
+                }
+            },
+            actions = {
+                IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
+                    Toast.makeText(context, errorText,Toast.LENGTH_LONG).show()
+                }) {
+                    Icon(Icons.Default.MoreVert, contentDescription = "More")
+                }
             },
             colors = TopAppBarDefaults.topAppBarColors(
                 //containerColor = MaterialTheme.colorScheme.primaryContainer

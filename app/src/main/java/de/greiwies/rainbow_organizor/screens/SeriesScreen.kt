@@ -2,6 +2,7 @@ package de.greiwies.rainbow_organizor.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -27,23 +28,24 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import de.greiwies.rainbow_organizor.DataEntry
+import de.greiwies.rainbow_organizor.LocalNavController
 import de.greiwies.rainbow_organizor.R
 import de.greiwies.rainbow_organizor.RainbowViewModel
 import de.greiwies.rainbow_organizor.ui.theme.OverlayBackgroundGrayHalfTransparent
 
 
 @Composable
-fun DetailsScreen(viewModel: RainbowViewModel) {
+fun SeriesScreen(viewModel: RainbowViewModel) {
     if (viewModel.selectedSeriesId < viewModel.demoData.size) {
-        val selectedVolumes = viewModel.demoData.get(viewModel.selectedSeriesId)
-        DataEntryGrid(selectedVolumes)
+        DataEntryGrid(viewModel)
     } else {
         Text("Ups: Da ist etwas bei den Daten schief gelaufen...")
     }
 }
 
 @Composable
-fun DataEntryGrid(entries: List<DataEntry>) {
+private fun DataEntryGrid(viewModel: RainbowViewModel) {
+    val selectedVolumes = viewModel.demoData.get(viewModel.selectedSeriesId)
     val context = LocalContext.current
     val tileSizeInDp = with(LocalDensity.current) {
         (context.resources.getInteger(R.integer.BookCoverSize) + context.resources.getInteger(R.integer.BookCoverAdditionalTileEnlargement)).dp
@@ -54,15 +56,17 @@ fun DataEntryGrid(entries: List<DataEntry>) {
         columns = GridCells.Adaptive(minSize = tileSizeInDp),
         contentPadding = PaddingValues(8.dp)
     ) {
-        items(entries.size) { index ->
-            DataEntryTile(entries.get(index))
+        items(selectedVolumes.size) { index ->
+            DataEntryTile(viewModel, selectedVolumes.get(index), index)
         }
     }
 }
 
 @Composable
-fun DataEntryTile(entry: DataEntry) {
+private fun DataEntryTile(viewModel: RainbowViewModel, entry: DataEntry, index: Int) {
     val context = LocalContext.current
+    val navController = LocalNavController.current
+        ?: throw IllegalStateException("NavController not found in the CompositionLocal")
     val bookCoverSizeInDp = with(LocalDensity.current) {
         context.resources.getInteger(R.integer.BookCoverSize).dp
     }
@@ -79,7 +83,11 @@ fun DataEntryTile(entry: DataEntry) {
             .clip(RoundedCornerShape(outerCornerClipInDp))
             .background(OverlayBackgroundGrayHalfTransparent)
             .fillMaxWidth()
-            .wrapContentHeight(),
+            .wrapContentHeight()
+            .clickable(onClick = {
+                viewModel.selectedBookId = index
+                navController.navigate("details")
+            }),
         contentAlignment = Alignment.Center
     ) {
         Column(
