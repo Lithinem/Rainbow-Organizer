@@ -119,6 +119,8 @@ fun TopAppBarSeriesPage(){
                 }) {
                     Text("?", style = MaterialTheme.typography.labelLarge)
                 }
+                //TODO: Reimplement when Selection is implemented
+                /*
                 IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
                     Toast.makeText(context, errorText, Toast.LENGTH_LONG).show()
                 }) {
@@ -130,6 +132,7 @@ fun TopAppBarSeriesPage(){
                         contentScale = ContentScale.Fit
                     )
                 }
+                */
                 // TODO: Implement when necessary. For when '?' is needed rethink layout
                 /* IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
                     Toast.makeText(context, errorText,Toast.LENGTH_LONG).show()
