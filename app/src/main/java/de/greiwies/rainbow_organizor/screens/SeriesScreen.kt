@@ -86,7 +86,7 @@ private fun DataEntryTile(viewModel: RainbowViewModel, entry: DataEntry, index: 
             .wrapContentHeight()
             .clickable(onClick = {
                 viewModel.selectedBookId = index
-                navController.navigate("details")
+                navController.navigate("bookDetails")
             }),
         contentAlignment = Alignment.Center
     ) {

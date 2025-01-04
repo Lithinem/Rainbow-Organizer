@@ -17,6 +17,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import de.greiwies.rainbow_organizor.components.MainFabWithGrayscaledBackgroundOverlay
 import de.greiwies.rainbow_organizor.components.RainbowScaffold
+import de.greiwies.rainbow_organizor.screens.DetailsScreen
 import de.greiwies.rainbow_organizor.screens.SeriesScreen
 import de.greiwies.rainbow_organizor.screens.LandingPage
 import de.greiwies.rainbow_organizor.ui.theme.RainbowOrganizorTheme
@@ -76,7 +77,7 @@ fun AppNavigation(viewModel: RainbowViewModel) {
             }
             composable("bookDetails") {
                 RainbowScaffold(viewModel, R.integer.TopBarCode_DetailsPage) {
-
+                    DetailsScreen(viewModel)
                 }
             }
         }
