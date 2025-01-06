@@ -27,3 +27,4 @@ val ContrastColorDark = Color(0xFF822b5e)
 val ContrastColorDark2 = Color(0xFF631241)
 
 val OverlayBackgroundGrayHalfTransparent = Color(0x665B5B5B)
+val OverlayTextBlock = Color(0xFF8C8C8C)

@@ -1,6 +1,5 @@
 package de.greiwies.rainbow_organizor.screens
 
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -15,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,14 +22,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import de.greiwies.rainbow_organizor.R
 import de.greiwies.rainbow_organizor.RainbowViewModel
+import de.greiwies.rainbow_organizor.components.TextBlock
 
 @Composable
 fun DetailsScreen(viewModel: RainbowViewModel) {
@@ -48,14 +47,19 @@ private fun Content(viewModel: RainbowViewModel) {
         viewModel.demoData.get(viewModel.selectedSeriesId).get(viewModel.selectedBookId)
     val context = LocalContext.current
     val contentPadding = with(LocalDensity.current) {
-        context.resources.getInteger(R.integer.contentPadding).dp
+        context.resources.getInteger(R.integer.ContentPadding).dp
     }
     val bookCoverSizeInDp = with(LocalDensity.current) {
         context.resources.getInteger(R.integer.BookCoverSize).dp
     }
+    val iconSize = with(LocalDensity.current) {
+        context.resources.getInteger(R.integer.DefaultIconSize).dp
+    }
+
+
     val errorText = stringResource(R.string.function_out_of_scope_error)
 
-    Column (modifier = Modifier.padding(contentPadding)) {
+    Column(modifier = Modifier.padding(contentPadding)) {
         Row {
             Image(
                 painter = painterResource(id = datasetToDisplay.imageResId),
@@ -65,46 +69,53 @@ private fun Content(viewModel: RainbowViewModel) {
             Spacer(modifier = Modifier.size(contentPadding))
             Text(
                 text = datasetToDisplay.Title,
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
             )
         }
-            Row (
-                modifier = Modifier.height(IntrinsicSize.Min)
-            ){
-                Box(
-                    modifier = Modifier.width(bookCoverSizeInDp)
-                ){
-                    IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
-                        Toast.makeText(context, errorText, Toast.LENGTH_LONG).show()
-                    }) {
-                        Icon(Icons.Outlined.FavoriteBorder, contentDescription = "Favorite")
-                    }
-                }
-                Spacer(modifier = Modifier.size(contentPadding))
-                Row (
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    Text(
-                        text = "${datasetToDisplay.Edition}. Ausgabe",
-                        modifier = Modifier.weight(1F),
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                    Text(
-                        text = "Band ${datasetToDisplay.Volume}",
-                        modifier = Modifier.weight(1F),
-                        style = MaterialTheme.typography.bodyMedium
+        Spacer(modifier = Modifier.size(contentPadding))
+        Row(
+            modifier = Modifier.height(IntrinsicSize.Min)
+        ) {
+            Box(
+                modifier = Modifier.width(bookCoverSizeInDp)
+            ) {
+                IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
+                    Toast.makeText(context, errorText, Toast.LENGTH_LONG).show()
+                }) {
+                    Icon(
+                        Icons.Outlined.FavoriteBorder,
+                        contentDescription = "Favorite",
+                        modifier = Modifier.size(iconSize)
                     )
                 }
             }
-            Row {
-                Text(text = "Zusammenfassung",
-                    style = MaterialTheme.typography.headlineMedium)
-            }
-            Row {
-                Text(text = datasetToDisplay.Summary,
-                    style = MaterialTheme.typography.bodyMedium)
+            Spacer(modifier = Modifier.size(contentPadding))
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                Text(
+                    text = "${datasetToDisplay.Edition}. Ausgabe",
+                    modifier = Modifier.weight(1F),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Text(
+                    text = "Band ${datasetToDisplay.Volume}",
+                    modifier = Modifier.weight(1F),
+                    style = MaterialTheme.typography.bodyMedium
+                )
             }
         }
-
+        Row {
+            Text(
+                text = "Zusammenfassung",
+                style = MaterialTheme.typography.headlineMedium
+            )
+        }
+        Row {
+            TextBlock(content = datasetToDisplay.Summary, modifier = Modifier.fillMaxWidth())
+        }
+    }
 }

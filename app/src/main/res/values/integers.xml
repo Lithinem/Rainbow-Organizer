@@ -10,5 +10,7 @@
     <integer name="BookCoverAdditionalTileEnlargement">10</integer>
     <integer name="OuterCornerClip">16</integer>
     <integer name="InnerCornerClip">8</integer>
-    <integer name="contentPadding">10</integer>
+    <integer name="ContentPadding">10</integer>
+    <integer name="BorderThickness">4</integer>
+    <integer name="DefaultIconSize">60</integer>
 </resources>
