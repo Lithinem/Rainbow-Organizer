@@ -61,7 +61,8 @@ import kotlin.math.abs
 fun LandingPage(viewModel: RainbowViewModel)
 {
     val items = remember { LoremIpsum().values.first().split(" ").plus("ZETA").sortedBy { it.lowercase() } }
-    LandingPageContent(viewModel)
+    //LandingPageContent(viewModel)
+    LazyVerticalGridWithScrollbar()
 }
 
 
