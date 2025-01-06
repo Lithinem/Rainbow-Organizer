@@ -51,6 +51,7 @@ import de.greiwies.rainbow_organizor.LocalNavController
 import de.greiwies.rainbow_organizor.R
 import de.greiwies.rainbow_organizor.RainbowViewModel
 import de.greiwies.rainbow_organizor.SeriesSummary
+import de.greiwies.rainbow_organizor.components.VisibleSeparator
 import de.greiwies.rainbow_organizor.ui.theme.OverlayBackgroundGrayHalfTransparent
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -251,11 +252,7 @@ private fun ContentElement(item: SeriesSummary, index:Int, viewModel: RainbowVie
 
             Spacer(modifier = Modifier.padding(5.dp))
 
-            //Visible Separator
-            Box(modifier = Modifier
-                .background(OverlayBackgroundGrayHalfTransparent)
-                .fillMaxWidth()
-                .height(4.dp))
+            VisibleSeparator()
         }
     }
 }
