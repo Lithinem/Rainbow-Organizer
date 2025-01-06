@@ -68,34 +68,43 @@ private fun Content(viewModel: RainbowViewModel) {
                 style = MaterialTheme.typography.bodyLarge
             )
         }
-        Row (
-          modifier = Modifier.height(IntrinsicSize.Min)
-        ) {
-            Box(
-                modifier = Modifier.width(bookCoverSizeInDp)
+            Row (
+                modifier = Modifier.height(IntrinsicSize.Min)
             ){
-                IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
-                    Toast.makeText(context, errorText, Toast.LENGTH_LONG).show()
-                }) {
-                    Icon(Icons.Outlined.FavoriteBorder, contentDescription = "Favorite")
+                Box(
+                    modifier = Modifier.width(bookCoverSizeInDp)
+                ){
+                    IconButton(onClick = { //* TODO: Implement menu (not Part of Project) */
+                        Toast.makeText(context, errorText, Toast.LENGTH_LONG).show()
+                    }) {
+                        Icon(Icons.Outlined.FavoriteBorder, contentDescription = "Favorite")
+                    }
+                }
+                Spacer(modifier = Modifier.size(contentPadding))
+                Row (
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    Text(
+                        text = "${datasetToDisplay.Edition}. Ausgabe",
+                        modifier = Modifier.weight(1F),
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                    Text(
+                        text = "Band ${datasetToDisplay.Volume}",
+                        modifier = Modifier.weight(1F),
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                 }
             }
-            Spacer(modifier = Modifier.size(contentPadding))
-            Row (
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxSize()
-            ) {
-                Text(
-                    text = "${datasetToDisplay.Edition}. Ausgabe",
-                    modifier = Modifier.weight(1F),
-                    style = MaterialTheme.typography.bodyMedium
-                )
-                Text(
-                    text = "Band ${datasetToDisplay.Volume}",
-                    modifier = Modifier.weight(1F),
-                    style = MaterialTheme.typography.bodyMedium
-                )
+            Row {
+                Text(text = "Zusammenfassung",
+                    style = MaterialTheme.typography.headlineMedium)
+            }
+            Row {
+                Text(text = datasetToDisplay.Summary,
+                    style = MaterialTheme.typography.bodyMedium)
             }
         }
-    }
+
 }
