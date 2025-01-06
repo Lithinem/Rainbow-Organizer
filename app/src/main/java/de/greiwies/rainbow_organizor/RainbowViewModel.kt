@@ -31,7 +31,8 @@ class RainbowViewModel : ViewModel() {
                     Summary = "Begleite Naruto Uzumaki, einen jungen Ninja mit großen Träumen, auf seinem Weg, Hokage, der stärkste Ninja seines Dorfes, zu werden. In einer Welt voller Intrigen, Freundschaft und erbitterter Kämpfe muss er seine innere Stärke finden und das Geheimnis des Fuchsgeistes in sich enthüllen.",
                     Pages = 150 + (volume % 3) * 10, // Beispielseitenzahl variiert leicht
                     Volume = volume,
-                    Edition = 1 + (volume % 3)
+                    Edition = 1 + (volume % 3),
+                    Genre = listOf("Manga", "Fantasy", "Friendship")
                 )
             },
         // Neon Genesis Evangelion: Teile 1-4
@@ -45,7 +46,8 @@ class RainbowViewModel : ViewModel() {
                 Summary = "In einer düsteren Zukunft kämpft die Menschheit gegen gigantische Wesen, die als Engel bekannt sind. Die einzige Hoffnung liegt in gigantischen Mechas, den Evangelions, die von mutigen Jugendlichen wie Shinji Ikari gesteuert werden. Eine packende Mischung aus Action, Philosophie und psychologischer Tiefe.",
                 Pages = 180 + (volume % 2) * 15, // Beispielseitenzahl
                 Volume = volume,
-                Edition = 1 + (volume % 2)
+                Edition = 1 + (volume % 2),
+                Genre = listOf("Manga", "Horror", "Apocalypse")
             )
         },
         // Noragami: Teile 1-8, 11-12, 14, 18, 26, 27
@@ -59,7 +61,8 @@ class RainbowViewModel : ViewModel() {
                 Summary = "Yato, ein pleitegegangener Gott ohne Tempel, nimmt jede Aufgabe an, um sein Leben als Gott zu verbessern – von der Suche nach verlorenen Katzen bis zum Bekämpfen gefährlicher Geister. Mit Witz, Action und einer Prise Drama taucht der Leser in eine Welt ein, in der Götter und Sterbliche Seite an Seite existieren.",
                 Pages = 160 + (volume % 4) * 10, // Beispielseitenzahl
                 Volume = volume,
-                Edition = (volume % 3)+1
+                Edition = (volume % 3)+1,
+                Genre = listOf("Manga", "Slice of life")
             )
         },
         // No Guns Life: Teil 1
@@ -72,7 +75,8 @@ class RainbowViewModel : ViewModel() {
                 Summary = "Juzo Inui, ein Ex-Soldat mit einem Revolver als Kopf, arbeitet in einer Welt, in der Mensch-Maschinen-Hybriden zur Normalität gehören, als Problemlöser. Seine Mission: Ungerechtigkeiten aufdecken und die Geheimnisse seiner mysteriösen Vergangenheit entschlüsseln, während er sich gegen dunkle Mächte stellt.",
                 Pages = 200, // Beispielseitenzahl
                 Volume = 1,
-                Edition = 2
+                Edition = 2,
+                Genre = listOf("Manga")
             )
         )
     )
@@ -110,7 +114,8 @@ data class DataEntry(
     val Summary: String,
     val Pages: Int,
     val Volume: Int,
-    val Edition: Int
+    val Edition: Int,
+    val Genre: List<String>
 )
 
 data class SeriesSummary(

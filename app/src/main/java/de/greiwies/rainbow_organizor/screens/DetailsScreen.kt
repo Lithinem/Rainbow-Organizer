@@ -1,5 +1,6 @@
 package de.greiwies.rainbow_organizor.screens
 
+import android.provider.ContactsContract.Data
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -30,6 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import de.greiwies.rainbow_organizor.R
 import de.greiwies.rainbow_organizor.RainbowViewModel
+import de.greiwies.rainbow_organizor.components.DataField
 import de.greiwies.rainbow_organizor.components.TextBlock
 
 @Composable
@@ -117,5 +119,18 @@ private fun Content(viewModel: RainbowViewModel) {
         Row {
             TextBlock(content = datasetToDisplay.Summary, modifier = Modifier.fillMaxWidth())
         }
+        Spacer(modifier = Modifier.size(contentPadding))
+        DataField(
+            key = "Seiten",
+            value = datasetToDisplay.Pages.toString()
+        )
+        DataField(
+            key = if (datasetToDisplay.Languages.size > 1) "Sprachen" else "Sprache",
+            valueList = datasetToDisplay.Languages
+        )
+        DataField(
+            key = if (datasetToDisplay.Genre.size > 1) "Genres" else "Genre",
+            valueList = datasetToDisplay.Genre
+        )
     }
 }
