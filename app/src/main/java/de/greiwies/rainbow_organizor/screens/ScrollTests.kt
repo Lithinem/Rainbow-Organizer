@@ -20,7 +20,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 
 @Composable
 fun LazyVerticalGridWithScrollbar(){
-    LazyVerticalGridWithScrollbarV7()
+    LazyVerticalGridWithScrollbarV5()
 }
 
 @Composable
