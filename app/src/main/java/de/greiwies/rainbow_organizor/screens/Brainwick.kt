@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
+import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
@@ -51,7 +52,7 @@ fun QuickScrollList(
     }
 
     val items = remember {
-        (0..99).reversed().toList()
+        (0..199).reversed().toList()
     }
 
     Box(
@@ -134,15 +135,18 @@ private fun QuickScroll(
         if (viewPortHeight <= 0) {
             1
         } else {
-            viewPortHeight / listState.layoutInfo.totalItemsCount
+            //Insert visible items to correct scrollBar size
+            viewPortHeight / (listState.layoutInfo.totalItemsCount - listState.layoutInfo.visibleItemsInfo.size)
         }
     }
 
     val onPositionUpdated: (yPos: Int) -> Unit = {
         val itemIndex = (it / averageItemHeight).coerceIn(0, listState.layoutInfo.totalItemsCount)
+        println("ItemIndex: $itemIndex   It: $it    AverageHeight: $averageItemHeight")
         scope.launch {
             // TODO: or listState.animateScrollToItem(itemIndex)
-            listState.scrollToItem(itemIndex)
+            //listState.scrollToItem(itemIndex)
+            listState.scrollBy(30F)
         }
     }
 

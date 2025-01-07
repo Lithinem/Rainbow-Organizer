@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
@@ -17,11 +18,16 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import androidx.compose.ui.platform.LocalConfiguration
+import kotlin.math.roundToInt
 
 @Composable
 fun LazyVerticalGridWithScrollbar(){
-    LazyVerticalGridWithScrollbarV5()
+    //LazyVerticalGridWithScrollbarV5()
 }
+
+
+
+
 
 @Composable
 fun LazyVerticalGridWithScrollbarV7() {
