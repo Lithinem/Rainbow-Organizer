@@ -118,7 +118,7 @@ fun VerticalScrollbar(
                     targetItem = (scrollFraction * (totalItems - visibleItems)).toInt()
                 }
             }
-                .align(Alignment.Center)
+            //    .align(Alignment.Center)
 
     ) {
         Box(

@@ -18,10 +18,13 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import androidx.compose.ui.platform.LocalConfiguration
 
-
+@Composable
+fun LazyVerticalGridWithScrollbar(){
+    LazyVerticalGridWithScrollbarV7()
+}
 
 @Composable
-fun LazyVerticalGridWithScrollbar() {
+fun LazyVerticalGridWithScrollbarV7() {
     val lazyGridState = rememberLazyGridState()
     val coroutineScope = rememberCoroutineScope()
     val itemCount = 100 // Anzahl der Elemente
@@ -93,7 +96,7 @@ fun LazyVerticalGridWithScrollbar() {
                     .fillMaxWidth()
                     .height((knobHeight * 300).dp) // Dynamische Höhe basierend auf Sichtbarkeit
                     .offset(y = ((scrollbarPosition * (1 - knobHeight)) * 300).dp) // Offset-Berechnung korrigiert
-                    .background(MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(4.dp))
+                    .background(Color.Red, shape = RoundedCornerShape(4.dp))
                     .pointerInput(Unit) {
                         detectVerticalDragGestures { change, dragAmount ->
                             change.consume() // Verhindert Konflikte mit anderen Gesten
@@ -183,7 +186,7 @@ fun LazyVerticalGridWithScrollbarV6() {
                     .fillMaxWidth()
                     .height((knobHeight * 300).dp) // Dynamische Höhe basierend auf Sichtbarkeit
                     .offset(y = ((scrollbarPosition * (1 - knobHeight)) * 300).dp) // Offset-Berechnung korrigiert
-                    .background(MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(4.dp))
+                    .background(Color.Red, shape = RoundedCornerShape(4.dp))
                     .pointerInput(Unit) {
                         detectVerticalDragGestures { change, dragAmount ->
                             change.consume() // Verhindert Konflikte mit anderen Gesten
@@ -271,7 +274,7 @@ fun LazyVerticalGridWithScrollbarV5() {
                     .fillMaxWidth()
                     .height((knobHeight * 300).dp) // Dynamische Höhe basierend auf Sichtbarkeit
                     .offset(y = (scrollbarPosition * (300 - knobHeight * 300)).dp) // Dynamisches Offset
-                    .background(MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(4.dp))
+                    .background(Color.Red, shape = RoundedCornerShape(4.dp))
                     .pointerInput(Unit) {
                         detectVerticalDragGestures { change, dragAmount ->
                             change.consume() // Verhindert Konflikte mit anderen Gesten
@@ -449,7 +452,7 @@ fun LazyVerticalGridWithScrollbarV2() {
                     .fillMaxWidth()
                     .height((knobHeight * 300).dp) // Dynamische Höhe basierend auf Sichtbarkeit
                     .offset(y = (scrollbarPosition * (300 - knobHeight * 300)).dp) // Beispiel-Offset
-                    .background(MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(4.dp))
+                    .background(Color.Red, shape = RoundedCornerShape(4.dp))
                     .pointerInput(Unit) {
                         detectVerticalDragGestures { change, dragAmount ->
                             change.consume() // Verhindert Konflikte mit anderen Gesten
@@ -528,7 +531,8 @@ fun LazyVerticalGridWithScrollbarV1() {
                     .fillMaxWidth()
                     .height(48.dp) // Dynamische Höhe ist optional
                     .offset(y = (scrollbarPosition * 300).dp) // Beispiel-Offset, passt dies für reale Daten an
-                    .background(MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(4.dp))
+                    .background(Color.Red
+                        , shape = RoundedCornerShape(4.dp))
             )
         }
     }
