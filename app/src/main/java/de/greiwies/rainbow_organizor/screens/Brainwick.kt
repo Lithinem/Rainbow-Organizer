@@ -25,6 +25,11 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 
+
+
+//From https://gist.github.com/brianwernick/f6c954e7985357c7b72ceded31b9c34c
+
+
 @Preview(showBackground = true)
 @Composable
 private fun PreviewQuickScrollList() {
