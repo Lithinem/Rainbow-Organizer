@@ -124,7 +124,7 @@ private fun DataEntryGrid(viewModel: RainbowViewModel) {
                     .fillMaxWidth()
                     .height(scrollBarHeight * knobSizePercentage)
                     .offset(y = knobOffset)
-                    .background(Color.Red, shape = RoundedCornerShape(4.dp))
+                    .background(MaterialTheme.colorScheme.primaryContainer, shape = RoundedCornerShape(4.dp))
                     .pointerInput(Unit) {
                         detectVerticalDragGestures { change, dragAmount ->
                             change.consume()
