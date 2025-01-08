@@ -110,7 +110,7 @@ fun MyGridScrollbar(){
                     scrollBarHeight = with(density) { layoutCoordinates.size.height.toDp() }
             }
         ) {
-            // Scrollbar-Indikator
+            // Scrollbar-Indicator
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
