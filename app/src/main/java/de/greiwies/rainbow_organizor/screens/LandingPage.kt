@@ -63,7 +63,8 @@ fun LandingPage(viewModel: RainbowViewModel)
     val items = remember { LoremIpsum().values.first().split(" ").plus("ZETA").sortedBy { it.lowercase() } }
     //LandingPageContent(viewModel)
     //LazyVerticalGridWithScrollbar()
-    QuickScrollList()
+    //QuickScrollList()
+    MyGridScrollbar()
 }
 
 
