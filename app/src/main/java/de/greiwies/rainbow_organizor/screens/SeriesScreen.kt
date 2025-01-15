@@ -87,7 +87,7 @@ private fun DataEntryGrid(viewModel: RainbowViewModel) {
             if (totalContentHeight > 0) {
                 viewportHeight.toFloat() / totalContentHeight.toFloat()
             } else {
-                0.1f
+                1.0f
             }
         }
     }
