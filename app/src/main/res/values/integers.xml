@@ -14,4 +14,5 @@
     <integer name="BorderThickness">4</integer>
     <integer name="DefaultIconSize">60</integer>
     <integer name="SeparatorSize">4</integer>
+    <integer name="ScrollBar_Width">25</integer>
 </resources>

@@ -70,6 +70,7 @@ private fun DataEntryGrid(viewModel: RainbowViewModel) {
     val tileSizeInDp = with(LocalDensity.current) {
         (context.resources.getInteger(R.integer.BookCoverSize) + context.resources.getInteger(R.integer.BookCoverAdditionalTileEnlargement)).dp
     }
+    val scrollBarWidth = context.resources.getInteger(R.integer.ScrollBar_Width).dp
     val lazyGridState = rememberLazyGridState()
     val coroutineScope = rememberCoroutineScope()
     val configuration = LocalConfiguration.current
@@ -110,7 +111,7 @@ private fun DataEntryGrid(viewModel: RainbowViewModel) {
         Box(
             modifier = Modifier
                 .fillMaxHeight()
-                .width(16.dp)
+                .width(scrollBarWidth)
                 .align(androidx.compose.ui.Alignment.CenterEnd)
                 .padding(4.dp)
                 .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.3f))
