@@ -79,11 +79,16 @@ private fun DataEntryGrid(viewModel: RainbowViewModel) {
     val columns = maxOf(1, (screenWidth / tileSizeInDp).toInt())
     val knobSizePercentage by remember {
         derivedStateOf {
-            if (lazyGridState.layoutInfo.totalItemsCount > 0) {
-                val visibleRows = lazyGridState.layoutInfo.visibleItemsInfo.size / columns.toFloat()
-                val totalRows = lazyGridState.layoutInfo.totalItemsCount / columns.toFloat()
-                visibleRows / totalRows
-            } else 0.1f
+            val viewportHeight = lazyGridState.layoutInfo.viewportEndOffset - lazyGridState.layoutInfo.viewportStartOffset
+            val totalContentHeight = lazyGridState.layoutInfo.totalItemsCount.takeIf { it > 0 }?.let {
+                lazyGridState.layoutInfo.visibleItemsInfo.firstOrNull()?.size?.height?.times(it / columns)
+            } ?: 0
+
+            if (totalContentHeight > 0) {
+                viewportHeight.toFloat() / totalContentHeight.toFloat()
+            } else {
+                0.1f
+            }
         }
     }
 
@@ -130,7 +135,7 @@ private fun DataEntryGrid(viewModel: RainbowViewModel) {
                         detectVerticalDragGestures { change, dragAmount ->
                             change.consume()
                             coroutineScope.launch {
-                                lazyGridState.scrollBy(dragAmount / knobSizePercentage * 1.15F)
+                                lazyGridState.scrollBy(dragAmount / knobSizePercentage)
                             }
                         }
                     }
