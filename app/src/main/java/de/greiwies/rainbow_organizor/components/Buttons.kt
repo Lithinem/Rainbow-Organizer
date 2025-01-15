@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -24,6 +25,7 @@ import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,8 +37,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.integerResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -126,31 +130,78 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
                             bottomEnd = 0.dp
                         )
                     )
-                    .background(Color.Gray)
+                    .background(MaterialTheme.colorScheme.primaryContainer)
                     .align(Alignment.BottomEnd)
                     .clickable(
                         indication = null, //suppresses the Ripple-Animation
                         interactionSource = remember { MutableInteractionSource() }
-                    ){}
+                    ) {}
             ) {
+                val buttonSize = context.resources.getInteger(R.integer.Fab_ContentButtonSize).dp
+                val buttonIconSize = context.resources.getInteger(R.integer.Fab_ContentButtonIconSize).dp
+                val separatorSize = context.resources.getInteger(R.integer.SeparatorSize).dp
+
                 // Inner Buttons
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(16.dp),
-                    verticalArrangement = Arrangement.Bottom,
+                        .padding(top = 50.dp, end = 30.dp),
+                    verticalArrangement = Arrangement.Top,
                     horizontalAlignment = Alignment.End
                 ) {
-                    Button(onClick = { // TODO: Aktion 1
-                        Toast.makeText(context, errorText, Toast.LENGTH_LONG).show()
-                    }) {
-                        Text("Button 1")
+                    Box(
+                        modifier = Modifier
+                            .clip(CircleShape)
+                            .size(buttonSize)
+                            .clickable{
+
+                            },
+                        contentAlignment = Alignment.Center
+                    ){
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Spacer(modifier = Modifier.size(10.dp))
+                            Image(
+                                painter = painterResource(id = R.drawable.select_all),
+                                contentDescription = "Select all Button",
+                                modifier = Modifier
+                                    .size(buttonIconSize),
+                                contentScale = ContentScale.Fit
+                            )
+                            Spacer(modifier = Modifier.size(separatorSize))
+                            Text("Hinzufügen")
+                            Spacer(modifier = Modifier.size(10.dp))
+                        }
                     }
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Button(onClick = { // TODO: Aktion 2
-                        Toast.makeText(context, errorText, Toast.LENGTH_LONG).show()
-                    }) {
-                        Text("Button 2")
+                }
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(bottom = 30.dp, start = 50.dp),
+                    verticalArrangement = Arrangement.Bottom,
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .clip(CircleShape)
+                            .size(buttonSize)
+                            .clickable{
+
+                            },
+                        contentAlignment = Alignment.Center
+                    ){
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Spacer(modifier = Modifier.size(10.dp))
+                            Image(
+                                painter = painterResource(id = R.drawable.select_all),
+                                contentDescription = "Select all Button",
+                                modifier = Modifier
+                                    .size(buttonIconSize),
+                                contentScale = ContentScale.Fit
+                            )
+                            Spacer(modifier = Modifier.size(separatorSize))
+                            Text("Scannen")
+                            Spacer(modifier = Modifier.size(10.dp))
+                        }
                     }
                 }
             }
@@ -160,8 +211,9 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
         AnimatedVisibility(visible = !expandFab.value) {
             FloatingActionButton(
                 onClick = { expandFab.value = !expandFab.value },
-                modifier = Modifier.size(80.dp)
-                    .offset(x=(-60).dp, y = (-80).dp),
+                modifier = Modifier
+                    .size(80.dp)
+                    .offset(x = (-60).dp, y = (-80).dp),
                 shape = CircleShape
             ) {
                 Icon(

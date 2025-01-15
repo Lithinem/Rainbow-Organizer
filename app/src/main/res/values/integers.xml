@@ -2,6 +2,8 @@
 <resources>
     <integer name="Fab_FullExpandedSize">300</integer>
     <integer name="Fab_FullInflatedSize">56</integer>
+    <integer name="Fab_ContentButtonSize">120</integer>
+    <integer name="Fab_ContentButtonIconSize">70</integer>
     <integer name="DefaultAnimationDurationMilliseconds">250</integer>
     <integer name="TopBarCode_LandingPage">1</integer>
     <integer name="TopBarCode_SeriesPage">2</integer>
