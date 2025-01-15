@@ -154,14 +154,14 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
                             .clip(CircleShape)
                             .size(buttonSize)
                             .clickable{
-
+                                Toast.makeText(context, errorText,Toast.LENGTH_LONG).show()
                             },
                         contentAlignment = Alignment.Center
                     ){
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Spacer(modifier = Modifier.size(10.dp))
                             Image(
-                                painter = painterResource(id = R.drawable.select_all),
+                                painter = painterResource(id = R.drawable.add_book),
                                 contentDescription = "Select all Button",
                                 modifier = Modifier
                                     .size(buttonIconSize),
@@ -185,14 +185,14 @@ fun ExpandableFab(expandFab : MutableState<Boolean>) {
                             .clip(CircleShape)
                             .size(buttonSize)
                             .clickable{
-
+                                Toast.makeText(context, errorText,Toast.LENGTH_LONG).show()
                             },
                         contentAlignment = Alignment.Center
                     ){
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Spacer(modifier = Modifier.size(10.dp))
                             Image(
-                                painter = painterResource(id = R.drawable.select_all),
+                                painter = painterResource(id = R.drawable.barcode_scan),
                                 contentDescription = "Select all Button",
                                 modifier = Modifier
                                     .size(buttonIconSize),
