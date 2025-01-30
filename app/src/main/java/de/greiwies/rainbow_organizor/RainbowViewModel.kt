@@ -52,6 +52,7 @@ class RainbowViewModel : ViewModel() {
             )
         },
         // Noragami: Teile 1-8, 11-12, 14, 18, 26, 27
+        // Fehlende Bücher erst ab bestimmten Thrshhold anzeigen --> Hier keine fehlenden Bücher anzeigen
         listOf(1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 14, 18, 26, 27).map { volume ->
             DataEntry(
                 imageResId = R.drawable::class.java.getField("noragami_volume_$volume")
