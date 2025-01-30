@@ -62,47 +62,47 @@ private val LightColorScheme = lightColorScheme(
 private val RainbowTypography = Typography(
     titleLarge = TextStyle(
         fontWeight = FontWeight.Bold,
-        fontSize = 24.sp
+        fontSize = 20.sp
     ),
     titleMedium = TextStyle(
         fontWeight = FontWeight.Normal,
-        fontSize = 24.sp
+        fontSize = 20.sp
     ),
     titleSmall = TextStyle(
-        fontSize = 18.sp,
+        fontSize = 16.sp,
         fontWeight = FontWeight.Normal
     ),
 
     headlineLarge = TextStyle(
         fontWeight = FontWeight.Normal,
-        fontSize = 24.sp
+        fontSize = 20.sp
     ),
     headlineMedium = TextStyle(
-        fontSize = 18.sp,
+        fontSize = 16.sp,
         fontWeight = FontWeight.Normal
     ),
     headlineSmall = TextStyle(
-        fontSize = 14.sp,
+        fontSize = 12.sp,
         fontWeight = FontWeight.Normal
     ),
 
 
     bodyLarge = TextStyle(
-        fontSize = 14.sp,
+        fontSize = 12.sp,
         fontWeight = FontWeight.Bold
     ),
     bodyMedium = TextStyle(
-        fontSize = 14.sp,
+        fontSize = 12.sp,
         fontWeight = FontWeight.Normal
     ),
     bodySmall = TextStyle(
-        fontSize = 10.sp,
+        fontSize = 8.sp,
         fontWeight = FontWeight.Normal
     ),
 
     labelLarge = TextStyle(
         fontWeight = FontWeight.Normal,
-        fontSize = 24.sp
+        fontSize = 20.sp
     ),
 )
 

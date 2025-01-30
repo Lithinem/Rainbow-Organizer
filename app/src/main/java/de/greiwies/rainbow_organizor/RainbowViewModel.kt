@@ -20,7 +20,7 @@ class RainbowViewModel : ViewModel() {
     val demoData = listOf(
         // Naruto-Serie: Teile 1-46
         (1..46)
-            .filter { it != 39 } // Filtert Volume 39 heraus
+            //.filter { it != 39 } // Filtert Volume 39 heraus
             .map { volume ->
                 DataEntry(
                     imageResId = R.drawable::class.java.getField("naruto_volume_$volume")
@@ -32,7 +32,8 @@ class RainbowViewModel : ViewModel() {
                     Pages = 150 + (volume % 3) * 10, // Beispielseitenzahl variiert leicht
                     Volume = volume,
                     Edition = 1 + (volume % 3),
-                    Genre = listOf("Manga", "Fantasy", "Friendship")
+                    Genre = listOf("Manga", "Fantasy", "Friendship"),
+                    IsClickable = volume != 39
                 )
             },
         // Neon Genesis Evangelion: Teile 1-4
@@ -115,7 +116,8 @@ data class DataEntry(
     val Pages: Int,
     val Volume: Int,
     val Edition: Int,
-    val Genre: List<String>
+    val Genre: List<String>,
+    val IsClickable: Boolean = true
 )
 
 data class SeriesSummary(

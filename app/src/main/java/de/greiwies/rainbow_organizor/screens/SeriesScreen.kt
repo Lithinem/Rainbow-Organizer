@@ -168,10 +168,10 @@ private fun DataEntryTile(viewModel: RainbowViewModel, entry: DataEntry, index: 
             .background(OverlayBackgroundGrayHalfTransparent)
             .fillMaxWidth()
             .wrapContentHeight()
-            .clickable(onClick = {
+            .then(if (entry.IsClickable) Modifier.clickable {
                 viewModel.selectedBookId = index
                 navController.navigate("bookDetails")
-            }),
+            } else Modifier),
         contentAlignment = Alignment.Center
     ) {
         Column(
