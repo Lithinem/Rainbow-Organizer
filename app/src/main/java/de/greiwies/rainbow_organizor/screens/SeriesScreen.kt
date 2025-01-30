@@ -165,7 +165,12 @@ private fun DataEntryTile(viewModel: RainbowViewModel, entry: DataEntry, index: 
         modifier = Modifier
             .padding(8.dp)
             .clip(RoundedCornerShape(outerCornerClipInDp))
-            .background(OverlayBackgroundGrayHalfTransparent)
+            .then(
+                if (!entry.IsClickable){
+                    Modifier.background(MaterialTheme.colorScheme.errorContainer)
+                }
+                else Modifier.background(OverlayBackgroundGrayHalfTransparent)
+            )
             .fillMaxWidth()
             .wrapContentHeight()
             .then(if (entry.IsClickable) Modifier.clickable {
