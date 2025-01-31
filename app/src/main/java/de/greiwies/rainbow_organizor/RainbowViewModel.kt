@@ -90,7 +90,7 @@ class RainbowViewModel : ViewModel() {
         .map { (series, entries) ->
             SeriesSummary(
                 series = series,
-                totalVolumes = entries.count(),
+                totalVolumes = entries.filter { it.IsClickable }.count(),
                 totalPages = entries.sumOf { it.Pages },
                 imageResId = entries.get(0).imageResId
             )
