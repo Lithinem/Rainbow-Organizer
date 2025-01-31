@@ -91,7 +91,7 @@ class RainbowViewModel : ViewModel() {
             SeriesSummary(
                 series = series,
                 totalVolumes = entries.filter { it.IsClickable }.count(),
-                totalPages = entries.sumOf { it.Pages },
+                totalPages = entries.filter { it.IsClickable }.sumOf { it.Pages },
                 imageResId = entries.get(0).imageResId
             )
         }
