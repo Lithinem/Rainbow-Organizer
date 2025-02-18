@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "de.greiwies.rainbow_organizor"
+    namespace = "de.greiwies.rainbow_organizer"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "de.greiwies.rainbow_organizor"
+        applicationId = "de.greiwies.rainbow_organizer"
         minSdk = 21
         targetSdk = 35
         versionCode = 1
