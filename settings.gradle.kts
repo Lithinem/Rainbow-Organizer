@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Rainbow-Organizor"
+rootProject.name = "Rainbow-Organizer"
 include(":app")

@@ -2,5 +2,19 @@
 <resources>
     <integer name="Fab_FullExpandedSize">300</integer>
     <integer name="Fab_FullInflatedSize">56</integer>
+    <integer name="Fab_ContentButtonSize">120</integer>
+    <integer name="Fab_ContentButtonIconSize">70</integer>
     <integer name="DefaultAnimationDurationMilliseconds">250</integer>
+    <integer name="TopBarCode_LandingPage">1</integer>
+    <integer name="TopBarCode_SeriesPage">2</integer>
+    <integer name="TopBarCode_DetailsPage">3</integer>
+    <integer name="BookCoverSize">100</integer>
+    <integer name="BookCoverAdditionalTileEnlargement">10</integer>
+    <integer name="OuterCornerClip">16</integer>
+    <integer name="InnerCornerClip">8</integer>
+    <integer name="ContentPadding">10</integer>
+    <integer name="BorderThickness">4</integer>
+    <integer name="DefaultIconSize">60</integer>
+    <integer name="SeparatorSize">4</integer>
+    <integer name="ScrollBar_Width">25</integer>
 </resources>

@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "de.greiwies.rainbow_organizor"
+    namespace = "de.greiwies.rainbow_organizer"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "de.greiwies.rainbow_organizor"
+        applicationId = "de.greiwies.rainbow_organizer"
         minSdk = 21
         targetSdk = 35
         versionCode = 1
@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -75,7 +76,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
     implementation(libs.room.common)
     implementation(libs.room.ktx)
     implementation(libs.room.runtime)
