@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         setContent {
             LocalDemoArea(viewModel)
-            //RainbowOrganizorTheme {
+            //RainbowOrganizerTheme {
             //    //HideSystemUI()
             //    MainFabWithGrayscaledBackgroundOverlay()
             //    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
