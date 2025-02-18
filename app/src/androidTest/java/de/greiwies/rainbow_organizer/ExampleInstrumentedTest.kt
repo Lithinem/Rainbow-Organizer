@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("de.greiwies.rainbow_organizor", appContext.packageName)
+        assertEquals("de.greiwies.rainbow_organizer", appContext.packageName)
     }
 }

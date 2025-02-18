@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.RainbowOrganizor.Splash" parent="Theme.SplashScreen">
+    <style name="Theme.RainbowOrganizer.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">#FFFFFF</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/app_icon</item>
-        <item name="postSplashScreenTheme">@style/Theme.RainbowOrganizor</item>
+        <item name="postSplashScreenTheme">@style/Theme.RainbowOrganizer</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">false</item>
