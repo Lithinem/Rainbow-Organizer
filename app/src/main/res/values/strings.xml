@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Rainbow-Organizer</string>
+    <string name="function_out_of_scope_error">Diese Funktion ist leider nicht mehr Teil der Demo</string>
 </resources>
