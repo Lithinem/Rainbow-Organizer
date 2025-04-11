@@ -5,6 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -15,8 +18,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import de.greiwies.rainbow_organizer.components.HideSystemUI
 import de.greiwies.rainbow_organizer.components.MainFabWithGrayscaledBackgroundOverlay
 import de.greiwies.rainbow_organizer.components.RainbowScaffold
+import de.greiwies.rainbow_organizer.demos.EventComposablesDemoParentComposable
 import de.greiwies.rainbow_organizer.screens.DetailsScreen
 import de.greiwies.rainbow_organizer.screens.SeriesScreen
 import de.greiwies.rainbow_organizer.screens.LandingPage
@@ -32,27 +37,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         installSplashScreen()
         setContent {
-            LocalDemoArea(viewModel)
-            //RainbowOrganizerTheme {
-            //    //HideSystemUI()
-            //    MainFabWithGrayscaledBackgroundOverlay()
-            //    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-            //        Greeting(
-            //            name = "Android",
-            //            modifier = Modifier.padding(innerPadding)
-            //        )
-            //    }
-            //}
+            RainbowOrganizerTheme {
+                //HideSystemUI()
+                AppNavigation(viewModel)
+                MainFabWithGrayscaledBackgroundOverlay()
+            }
         }
-    }
-}
-
-//TODO: Migrate into Rainbow-Organizer Project after finish
-@Composable
-fun LocalDemoArea(viewModel: RainbowViewModel){
-    RainbowOrganizerTheme {
-        AppNavigation(viewModel)
-        //EventComposablesDemoParentComposable(viewModel)
     }
 }
 
@@ -84,6 +74,7 @@ fun AppNavigation(viewModel: RainbowViewModel) {
     }
 }
 
+//TODO: Delete later.
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Column {
