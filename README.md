@@ -3,5 +3,5 @@ Der Rainbow-Organizer ist eine sich in Entwicklung befindende App zur Verwaltung
 
 Die folgenden Scrennshots präsentieren das App-Theme:
 
-![plot](./pictures/Shelf_1.png)
-![plot](./pictures/Landing_Page.png)
+![plot](./pictures/Shelf_1.jpg)
+![plot](./pictures/Landing_Page.jpg)
